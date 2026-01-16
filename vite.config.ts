@@ -1,18 +1,26 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
 
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueDevTools from 'vite-plugin-vue-devtools';
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    vue(),
-    vueDevTools(),
-  ],
+  plugins: [vue(), vueDevTools()],
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
+    // Add .ts and .tsx to the list of resolved extensions
+    extensions: ['.js', '.json', '.jsx', '.mjs', '.ts', '.tsx', '.vue']
   },
-})
+  server: {
+    port: 3000
+  },
+  build: {
+    // cssCodeSplit: true, // Split CSS into multiple files
+    cssCodeSplit: false, // ❗ Single CSS file
+    // https://vite.dev/config/build-options/#build-minify
+    minify: 'esbuild'
+  }
+});
