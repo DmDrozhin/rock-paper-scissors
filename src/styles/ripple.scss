@@ -1,0 +1,16 @@
+.v-ripple__circle {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 1;
+  pointer-events: none;
+  animation-name: v-ripple;
+  animation-timing-function: ease-out;
+}
+
+@keyframes v-ripple {
+  to {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
