@@ -1,0 +1,73 @@
+$font-header: 'Orbitron', sans-serif;
+$font-body: 'Jost', sans-serif;
+$font-main:
+  'Orbit',
+  -apple-system,
+  BlinkMacSystemFont,
+  Roboto,
+  sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: $font-header; // Orbitron
+  margin: 0;
+}
+h1,
+h2 {
+  font-family: $font-header; // Orbitron
+  font-style: normal;
+  font-weight: 700;
+  font-size: 90px;
+  line-height: 92px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+h3 {
+  font-family: $font-header; // Orbitron
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+.assertion {
+  font-family: $font-main; // Orbit, system fonts
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+.remark {
+  font-family: $font-main; // Orbit, system fonts
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  letter-spacing: 0.05em;
+  color: #fec40e;
+}
+.description {
+  font-family: $font-body; // Jost
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
+.body-text {
+  font-family: $font-body; // Jost
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 28px;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+}
