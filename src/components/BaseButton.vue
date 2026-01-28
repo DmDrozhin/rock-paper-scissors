@@ -2,25 +2,38 @@
   import { computed } from 'vue';
   import icon from '@/assets/images/cardboard_airplane.svg';
 
-  interface Button {
-    label: string;
+  interface ButtonOptions {
     title: string;
+    label?: string;
     icon?: string;
     icon_alt?: string;
+    class?: string;
+    type?: 'button' | 'submit' | 'reset';
   }
 
   interface Props {
-    options?: Partial<Button>;
+    options?: Partial<ButtonOptions>;
+    disabled?: boolean;
   }
   const props = withDefaults(defineProps<Props>(), {
-    options: () => ({})
+    options: () => ({}),
+    disabled: false
   });
+  const emit = defineEmits<{
+    (e: 'click'): void;
+  }>();
+  function onClick() {
+    if (props.disabled) return;
+    emit('click');
+  }
 
-  const defaultOptions: Button = {
+  const defaultOptions: ButtonOptions = {
     label: 'Base Button',
     title: 'Button',
     icon: icon,
-    icon_alt: 'Button Icon'
+    icon_alt: 'Button Icon',
+    class: 'base',
+    type: 'button'
   };
   const mainOptions = computed(() => ({
     ...defaultOptions,
@@ -29,7 +42,14 @@
 </script>
 
 <template>
-  <button class="button base" v-ripple :aria-label="mainOptions.label" @click="$emit('click')">
+  <button
+    class="button"
+    :class="mainOptions.class"
+    v-ripple
+    :aria-label="mainOptions.label"
+    @click="onClick"
+    :type="mainOptions.type"
+    :disabled="disabled">
     {{ mainOptions.title }}
     <img v-if="mainOptions.icon" :src="mainOptions.icon" :alt="mainOptions.icon_alt" />
   </button>
@@ -37,6 +57,9 @@
 
 <style lang="scss" scoped>
   .button {
+    height: fit-content;
+    min-height: 56px;
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     gap: var(--space-sm);
@@ -45,17 +68,24 @@
     text-transform: uppercase;
     color: var(--color-text-dark);
     transition: var(--transition-base);
+    font-family: Orbitron, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 100%;
     &:hover {
       background-color: color-mix(in srgb, var(--color-primary), black 15%);
     }
     &.base {
-      min-height: 56px;
       padding: 0 var(--space-md);
-      font-family: Orbitron, sans-serif;
-      font-style: normal;
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 100%;
+    }
+    &.wide {
+      padding: 0 var(--space-xxl);
+    }
+    &:disabled {
+      background-color: var(--color-disabled);
+      pointer-events: none;
+      cursor: not-allowed;
     }
   }
 </style>
