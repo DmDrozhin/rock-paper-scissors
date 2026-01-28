@@ -18,11 +18,15 @@
   scrollbar-gutter: stable both-edges;
   /* colors */
   --color-primary: #fec40e;
+  --color-disabled: #fec60ec3;
   --color-secondary: #120f0f;
   --color-bg-body: #1e1e1e;
   --color-bg-app: #010101;
   --color-text-light: #ffffff;
-  --color-text-dark: #000;
+  --color-text-dark: #000000;
+  --color-text-muted: #aaaaaa;
+  --color-danger: #ff4d4f;
+  --input-bg-light: #ffffff;
   /* spacing */
   --space-xs: 4px;
   --space-sm: 8px;
@@ -89,4 +93,11 @@ ul,
 ol {
   margin: 0;
   padding: 0;
+}
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  outline: none;
 }
