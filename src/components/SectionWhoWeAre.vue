@@ -3,6 +3,7 @@
   import { computed, ref } from 'vue';
   import { WHO_WE_ARE } from '@/data/data.ts';
   import Button from '@/components/BaseButton.vue';
+  import { getUiIcon } from '@/utils/utils.ts';
 
   interface Props {
     options?: Record<string, unknown>;
@@ -27,10 +28,15 @@
       <!--CARD -->
       <div class="card" v-for="(card, index) in WHO_WE_ARE.cards" :key="index">
         <div class="card__image-circle" v-if="card.img">
-          <img :src="card.img" :alt="card.title" class="card__img" :width="card.img_size" :height="card.img_size" />
+          <img
+            :src="getUiIcon(card.img)"
+            :alt="card.title"
+            class="card__img"
+            :width="card.img_size"
+            :height="card.img_size" />
         </div>
         <h3 class="card__title">{{ card.title }}</h3>
-        <ul class="card__list" v-if="card.list.length">
+        <ul class="card__list" v-if="card.list?.length">
           <li v-for="(item, idx) in card.list" :key="idx" class="card__list-item">
             {{ item }}
           </li>
