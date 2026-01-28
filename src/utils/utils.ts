@@ -13,15 +13,12 @@ export function createAssetMap(globResult: Record<string, { default: string }>):
   );
 }
 
-/**
- * Возвращает полный путь к иконке в папке assets/images/ui
- */
-export function getIconPath(file?: string): string {
-  if (!file) {
-    return '';
-  }
-  return new URL(`../assets/images/ui/${file}`, import.meta.url).href;
+
+import { UI_ICONS, type UiIcon } from '@/assets/assets.ts';
+export function getUiIcon(name: UiIcon): string {
+  return getImagePath(UI_ICONS[name]);
 }
+
 // 👀 Импорт всех изображений из папки assets/images
 const images = import.meta.glob('/src/assets/images/**/*', {
   eager: true,
