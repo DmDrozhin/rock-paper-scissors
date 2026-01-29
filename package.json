@@ -1,5 +1,6 @@
 {
   "name": "rock_paper_scissors",
+  "homepage": "https://dmdrozhin.github.io/rock-paper-scissors/",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,7 +15,9 @@
     "build-only": "vite build",
     "type-check": "vue-tsc --build",
     "lint": "eslint . --fix --cache",
-    "format": "prettier --write --experimental-cli src/"
+    "format": "prettier --write --experimental-cli src/",
+    "deploy-via-script": "node deploy.js",
+    "deploy": "gh-pages -d dist -b gh-pages -r https://github.com/DmDrozhin/rock-paper-scissors"
   },
   "dependencies": {
     "@vueuse/core": "^14.1.0",
@@ -39,6 +42,7 @@
     "typescript": "~5.9.3",
     "vite": "^7.3.0",
     "vite-plugin-vue-devtools": "^8.0.5",
-    "vue-tsc": "^3.2.2"
+    "vue-tsc": "^3.2.2",
+    "gh-pages": "^6.3.0"
   }
 }
