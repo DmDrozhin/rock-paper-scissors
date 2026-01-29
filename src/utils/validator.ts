@@ -5,3 +5,14 @@ export function validateEmail(value: string, required?: boolean): string {
   }
   return '';
 }
+export function validateRequired(value: string, label = 'Field'): string {
+  if (!value.trim()) return `${label} is required`;
+  return '';
+}
+
+export function validateMinLength(value: string, min: number, label = 'Field'): string {
+  if (value.trim().length < min) {
+    return `${label} must be at least ${min} characters`;
+  }
+  return '';
+}

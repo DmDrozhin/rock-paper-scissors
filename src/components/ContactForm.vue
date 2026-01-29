@@ -1,0 +1,148 @@
+<script setup lang="ts">
+  import { modal } from '@/composables/useGlobalModal'
+  import { CONTACT_FORM } from '@/data/data'
+  import { getUiIcon } from '@/utils/utils'
+  import { useContactForm } from '@/composables/useContactForm'
+
+  import BaseInput from '@/components/BaseInput.vue'
+  import BaseButton from '@/components/BaseButton.vue'
+  import BaseTextArea from '@/components/BaseTextArea.vue'
+
+  const {
+    form,
+    touched,
+    nameError,
+    emailError,
+    messageError,
+    isFormValid,
+    submit
+  } = useContactForm((form) => {
+    console.log('Submit form:', form)
+    modal.confirm(form)
+  })
+</script>
+
+<template>
+  <form @submit.prevent="submit" class="contact-form">
+    <div class="contact-form__container">
+      <div class="header">
+        <h2 class="header__title">{{ CONTACT_FORM.title }}</h2>
+        <div class="header__description" v-html="CONTACT_FORM.description"></div>
+      </div>
+      <BaseInput
+        v-model="form.name"
+        label=""
+        :placeholder="CONTACT_FORM.fields.name.placeholder"
+        :name="CONTACT_FORM.fields.name.name"
+        :type="CONTACT_FORM.fields.name.type"
+        :icon="getUiIcon(CONTACT_FORM.fields.name.icon)"
+        :icon_size="CONTACT_FORM.fields.name.icon_size"
+        :error="nameError"
+        @blur="touched.name = true" />
+      <BaseInput
+        v-model="form.email"
+        label=""
+        :placeholder="CONTACT_FORM.fields.email.placeholder"
+        :name="CONTACT_FORM.fields.email.name"
+        :type="CONTACT_FORM.fields.email.type"
+        :icon="getUiIcon(CONTACT_FORM.fields.email.icon)"
+        :icon_size="CONTACT_FORM.fields.email.icon_size"
+        :error="emailError"
+        @blur="touched.email = true" />
+      <BaseTextArea
+        v-model="form.message"
+        :placeholder="CONTACT_FORM.fields.message.placeholder"
+        :icon="getUiIcon(CONTACT_FORM.fields.message.icon)"
+        :icon_size="CONTACT_FORM.fields.message.icon_size"
+        :name="CONTACT_FORM.fields.message.name"
+        label=""
+        :error="messageError"
+        @blur="touched.message = true" />
+      <BaseButton
+        :options="{
+          title: CONTACT_FORM.button.title,
+          type: CONTACT_FORM.button.type,
+          label: CONTACT_FORM.button.aria_label
+        }"
+        :disabled="!isFormValid" />
+    </div>
+  </form>
+</template>
+<style lang="scss" scoped>
+  .contact-form {
+    width: 100%;
+    width: 630px;
+    height: 700px;
+    position: relative;
+    overflow: hidden;
+    background-image: url('../assets/images/form-bg.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    background-color: var(--color-secondary);
+    border: 1px solid #1d1f23;
+    border-radius: var(--radius-md);
+    padding: var(--space-xl);
+    &::before {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      $size: 700px;
+      width: $size;
+      height: $size;
+      border-radius: 50%;
+      transform-origin: bottom right;
+      transform: translate(50%, 50%);
+      background: radial-gradient(50% 50% at 50% 50%, #fec40e 40%, rgba(254, 196, 14, 0) 100%);
+      filter: blur(120px);
+      z-index: 0;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      $shift: var(--space-md);
+      right: $shift;
+      bottom: $shift;
+      $size: 70px;
+      width: $size;
+      height: $size;
+      background-image: url('../assets/images/RPS_logo.svg');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      pointer-events: none;
+      z-index: 1;
+    }
+    &__container {
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--space-lg) + 2px);
+    }
+  }
+  .header {
+    &__title {
+      margin-bottom: var(--space-lg);
+      margin-top: var(--space-xxl);
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 600;
+      font-size: 52px;
+      line-height: 42px;
+      letter-spacing: 0.05em;
+      color: var(--color-text-light);
+    }
+    &__description {
+      font-family: 'Jost';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 32px;
+      letter-spacing: 0.05em;
+      color: var(--color-text-light);
+    }
+  }
+</style>
