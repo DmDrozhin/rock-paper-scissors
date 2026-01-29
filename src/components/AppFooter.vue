@@ -1,41 +1,19 @@
 <script setup lang="ts">
-  import { reactive, computed } from 'vue';
-  import { FOOTER } from '@/data/data.ts';
-  import logo from '@/assets/images/RPS_logo.svg';
-  import Button from '@/components/BaseButton.vue';
-  import BaseInput from '@/components/BaseInput.vue';
-  import { getUiIcon } from '@/utils/utils.ts';
-  import { validateEmail } from '@/utils/validator.ts';
   import { useThrottleFn } from '@vueuse/core';
+  import { FOOTER } from '@/data/data';
+  import logo from '@/assets/images/RPS_logo.svg';
+  import BaseInput from '@/components/BaseInput.vue';
+  import Button from '@/components/BaseButton.vue';
+  import { getUiIcon } from '@/utils/utils';
+  import { useEmailField } from '@/composables/useEmailField';
 
-  const user = reactive<{ email: string }>({
-    email: ''
-  });
-  const touched = reactive({
-    email: false
-  });
-  const emailError = computed(() => {
-    if (!touched.email) return '';
-    return validateEmail(user.email, false);
-  });
-
-  const isFormValid = computed(() => !emailError.value);
-
-  const isButtonDisabled = computed(() => {
-    return !user.email || !!emailError.value;
-  });
-
-  function markTouched(field: 'email') {
-    touched[field] = true;
-  }
+  const { email, error, isValid, touch } = useEmailField(false);
 
   const submit = useThrottleFn(() => {
-    touched.email = true;
+    touch();
+    if (!isValid.value) return;
 
-    if (!isFormValid.value) return;
-
-    // sending email
-    console.log('Submit email:', user.email);
+    console.log('Submit email:', email.value);
   }, 3000);
 </script>
 
@@ -49,18 +27,15 @@
       <div class="app-footer__actions">
         <form class="app-footer__form" @submit.prevent="submit">
           <BaseInput
-            v-model="user.email"
-            label=""
+            v-model="email"
             name="email"
             type="email"
             :placeholder="FOOTER.input.placeholder"
             :icon="getUiIcon(FOOTER.input.icon)"
-            :error="emailError"
-            @blur="markTouched('email')" />
-          <Button
-            @click="submit"
-            :options="{ title: FOOTER.button.title, type: 'submit' }"
-            :disabled="isButtonDisabled" />
+            :icon_size="FOOTER.input.icon_size"
+            :error="error"
+            @blur="touch" />
+          <Button :options="{ title: FOOTER.button.title, type: 'submit' }" :disabled="!isValid" />
         </form>
         <div class="app-footer__socials">
           <a
@@ -102,6 +77,9 @@
       line-height: 140%;
       letter-spacing: 1px;
       color: var(--color-text-light);
+    }
+    &__actions {
+      max-width: 450px;
     }
     &__form {
       display: flex;
