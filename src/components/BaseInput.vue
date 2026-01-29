@@ -6,6 +6,7 @@
     type?: string;
     name?: string;
     icon?: string;
+    icon_size?: number;
     error?: string;
     maxlength?: number;
     disabled?: boolean;
@@ -31,7 +32,7 @@
     </label>
 
     <div class="base-input__control">
-      <img v-if="icon" class="base-input__icon" :src="icon" alt="" aria-hidden="true" />
+      <img v-if="icon" class="base-input__icon" :src="icon" alt="input icon" aria-hidden="true" :width="icon_size" />
 
       <input
         class="base-input__input"
@@ -55,7 +56,6 @@
 
 <style lang="scss" scoped>
   .base-input {
-    width: 280px;
     display: flex;
     flex-direction: column;
     gap: 6px;
@@ -77,7 +77,6 @@
     }
 
     &__icon {
-      width: 26px;
       opacity: 0.5;
       transition: var(--transition-base);
     }
