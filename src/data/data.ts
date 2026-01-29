@@ -116,7 +116,8 @@ export const FOOTER = {
     error: 'Not correct email',
     label: 'Subscribe to our newsletter',
     placeholder: 'Enter your email',
-    icon: 'EMAIL' as UiIcon
+    icon: 'EMAIL' as UiIcon,
+    icon_size: 26
   },
   button: { title: 'Submit' },
   socials: {
@@ -129,4 +130,41 @@ export const FOOTER = {
     // facebook: 'https://www.facebook.com/rockpaperscissorsagency'
   },
   copyright: 'Rock Paper Scissors. 2026. All rights reserved'
+};
+
+import ButtonOptions from '@/components/BaseButton.vue';
+
+export const CONTACT_FORM = {
+  title: 'Drop us a line',
+  description: 'Let’s talk context. Give us a short story.',
+  fields: {
+    name: {
+      name: 'name',
+      placeholder: 'Your name',
+      required: true,
+      icon: 'FORM_USER' as UiIcon,
+      icon_size: 24,
+      type: 'text'
+    },
+    email: {
+      name: 'email',
+      placeholder: 'Your email',
+      required: true,
+      icon: 'FORM_EMAIL' as UiIcon,
+      icon_size: 26,
+      type: 'email'
+    },
+    message: {
+      name: 'message',
+      placeholder: 'Your message',
+      required: false,
+      icon: 'FORM_MESSAGE' as UiIcon,
+      icon_size: 30
+    }
+  },
+  button: {
+    title: 'Submit',
+    aria_label: 'Submit contact form',
+    type: 'submit' as (typeof ButtonOptions)['type']
+  }
 };
