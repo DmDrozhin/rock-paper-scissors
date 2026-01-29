@@ -4,7 +4,8 @@ export const META = {
   name: 'Rock Paper Scissors'
 };
 export const HEADER = {
-  button: 'BOOK A CALL'
+  button: 'BOOK A CALL',
+  area_label: 'Book a call button'
 };
 export const RPS = {
   title: 'ROCK PAPER SCISSORS',
@@ -12,7 +13,7 @@ export const RPS = {
     '<div class="description">Practical email marketing services.<br> Clear <span class="accent-text">tasks</span>. Working <span class="accent-text">solutions</span>.</div>',
   button: {
     title: 'Discuss my task',
-    aria_label: 'Discuss my task with Rock Paper Scissors team'
+    aria_label: 'Discuss my task button'
   }
 };
 interface Card {
@@ -28,6 +29,7 @@ interface WhoWeAre {
   remark: string;
   button: {
     title: string;
+    area_label?: string;
   };
 }
 export const WHO_WE_ARE: WhoWeAre = {
@@ -55,7 +57,8 @@ export const WHO_WE_ARE: WhoWeAre = {
   ],
   remark: '*Each task is approached as a separate, clearly defined solution*',
   button: {
-    title: 'Discuss'
+    title: 'Discuss',
+    area_label: 'Let\'s discuss button'
   }
 };
 
@@ -103,7 +106,7 @@ export const DROP_US_A_LINE = {
   title: 'Drop us a line',
   description:
     '<div class="assertion">Have a specific email <span class="accent-text">task</span> in <br>mind?<br> Let’s discuss the <span class="accent-text">solution.</span></div>',
-  button: { title: 'Contact' },
+  button: { title: 'Contact', area_label: 'Contact us button' },
   img: 'WORLD' as UiIcon
 };
 
@@ -119,11 +122,11 @@ export const FOOTER = {
     icon: 'EMAIL' as UiIcon,
     icon_size: 26
   },
-  button: { title: 'Submit' },
+  button: { title: 'Submit', area_label: 'Submit email button' },
   socials: {
     // twitter: 'https://twitter.com/rockpaperscisss',
     linkedin: {
-      link: 'https://www.linkedin.com/company/rock-paper-scissors-agency/',
+      link: '#',
       icon: 'LINKEDIN' as UiIcon,
       alt: 'Rock Paper Scissors LinkedIn'
     }

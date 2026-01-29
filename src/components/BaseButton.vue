@@ -4,7 +4,7 @@
 
   export interface ButtonOptions {
     title: string;
-    label?: string;
+    area_label?: string;
     icon?: string;
     icon_alt?: string;
     class?: string;
@@ -28,7 +28,7 @@
   }
 
   const defaultOptions: ButtonOptions = {
-    label: 'Base Button',
+    area_label: 'Base Button',
     title: 'Button',
     icon: icon,
     icon_alt: 'Button Icon',
@@ -47,7 +47,7 @@
     class="button"
     @click="onClick"
     :class="mainOptions.class"
-    :aria-label="mainOptions.label"
+    :aria-label="mainOptions.area_label"
     :type="mainOptions.type"
     :disabled="disabled">
     {{ mainOptions.title }}

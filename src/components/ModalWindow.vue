@@ -33,7 +33,7 @@
     <transition name="modal-fade">
       <div v-if="isRevealed" class="overlay-layer" :class="options.customClass" @click.self="cancel()">
         <div class="modal-block">
-          <button v-if="options.hasCloseButton" class="modal-block__close-button" @click="cancel()">×</button>
+          <button v-if="options.hasCloseButton" class="modal-block__close-button" @click="cancel()" aria-label="close modal window button">×</button>
           <slot name="content" />
         </div>
       </div>

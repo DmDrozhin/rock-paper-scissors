@@ -1,6 +1,7 @@
 <script setup lang="ts">
   import { RPS } from '@/data/data.ts';
   import icon from '@/assets/images/cardboard_airplane_wt.svg';
+  import { modal } from '@/composables/useGlobalModal.ts';
 </script>
 
 <template>
@@ -8,8 +9,12 @@
     <h1 class="section-rps__title">{{ RPS.title }}</h1>
     <div class="section-rps__description description" v-html="RPS.description"></div>
     <div class="trigger-box">
-      <button class="trigger-box__button" v-ripple @click="$emit('start-game')" :aria-label="RPS.button.aria_label">
-        <img :src="icon" alt="Rock Paper Scissors Icon" />
+      <button
+        v-ripple
+        class="trigger-box__button"
+        :aria-label="RPS.button.aria_label"
+        @click="modal.reveal({ source: 'rock paper scissors' })">
+        <img v-if="icon" :src="icon" alt="Rock Paper Scissors Icon" />
         <span>{{ RPS.button.title }}</span>
       </button>
     </div>
@@ -18,7 +23,7 @@
 
 <style lang="scss" scoped>
   .section-rps {
-    outline: 1px dashed rgb(115, 239, 239);
+    outline: 1px dashed rgba(115, 239, 239, 0.345);
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
     flex-direction: column;

@@ -3,15 +3,16 @@
   import Button from '@/components/BaseButton.vue';
   import { HEADER, META } from '@/data/data.ts';
   import logo from '@/assets/images/RPS_logo.svg';
+  import { modal } from '@/composables/useGlobalModal.ts';
 </script>
 
 <template>
-  <header class="app-header">
+  <header class="app-header" id="top">
     <div class="app-header__container">
-      <a href="#" v-ripple class="app-header__logo">
-        <img :src="logo" :alt="`${META.name} Logo`" />
-      </a>
-      <Button :options="{ title: HEADER.button }" />
+      <img v-if="logo" class="app-header__logo" :src="logo" :alt="`${META.name} Logo`" />
+      <Button
+        :options="{ title: HEADER.button, area_label: HEADER.area_label }"
+        @click="modal.reveal({ source: 'app header' })" />
     </div>
   </header>
 </template>
@@ -21,13 +22,9 @@
     width: 100%;
     min-height: 50px;
     padding: var(--space-lg) 0;
-    outline: 1px solid rgb(204, 225, 171);
+    outline: 1px solid rgba(204, 225, 171, 0.484);
     &__logo {
-      display: flex;
-      align-items: center;
-      img {
-        height: 70px;
-      }
+      height: 70px;
     }
     &__container {
       max-width: 1200px;

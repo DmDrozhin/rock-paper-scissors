@@ -12,7 +12,7 @@
       <!--CARD -->
       <div class="card" v-for="(card, index) in HOW_WE_WORK.cards" :key="index">
         <div class="card__image-circle" v-if="card.img">
-          <img :src="getUiIcon(card.img)" :alt="card.title" class="card__img" />
+          <img v-if="card.img" :src="getUiIcon(card.img)" :alt="card.title" class="card__img" />
         </div>
         <div class="card__title">{{ card.title }}</div>
       </div>
@@ -25,7 +25,7 @@
   .section-how-we-work {
     padding: var(--space-xxl) var(--space-lg);
     text-align: center;
-    outline: 1px dotted rgb(204, 108, 236);
+    outline: 1px dotted rgba(204, 108, 236, 0.443);
     &__title {
       margin-bottom: var(--space-xl);
     }
@@ -41,7 +41,7 @@
       justify-content: space-between;
     }
     .card {
-      outline: 1px dashed rgb(150, 150, 150);
+      outline: 1px dashed rgba(150, 150, 150, 0.432);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;

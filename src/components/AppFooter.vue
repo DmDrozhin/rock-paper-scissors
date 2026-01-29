@@ -21,7 +21,9 @@
   <footer class="app-footer">
     <div class="app-footer__wrapper">
       <div class="app-footer__logo">
-        <img :src="logo" alt="web site logo" width="100" />
+        <a v-if="logo" href="#top" aria-label="home link">
+          <img :src="logo" alt="web site logo" width="100" />
+        </a>
         <div class="app-footer__assertion" v-html="FOOTER.description"></div>
       </div>
       <div class="app-footer__actions">
@@ -35,16 +37,19 @@
             :icon_size="FOOTER.input.icon_size"
             :error="error"
             @blur="touch" />
-          <Button :options="{ title: FOOTER.button.title, type: 'submit' }" :disabled="!isValid" />
+          <Button
+            :options="{ title: FOOTER.button.title, type: 'submit', area_label: FOOTER.button.area_label }"
+            :disabled="!isValid" />
         </form>
         <div class="app-footer__socials">
           <a
+            v-if="FOOTER.socials.linkedin"
+            v-ripple
             class="social-link"
-            :href="FOOTER.socials.linkedin.link"
             target="_blank"
             rel="noopener noreferrer"
-            v-ripple
-            v-if="FOOTER.socials.linkedin">
+            :href="FOOTER.socials.linkedin.link"
+            :aria-label="FOOTER.socials.linkedin.alt">
             <img :src="getUiIcon(FOOTER.socials.linkedin.icon)" :alt="FOOTER.socials.linkedin.alt" width="32" />
           </a>
         </div>
@@ -58,7 +63,7 @@
 
 <style lang="scss" scoped>
   .app-footer {
-    outline: 1px dotted rgb(142, 140, 240);
+    outline: 1px dotted rgba(142, 140, 240, 0.482);
     padding: var(--space-xxl) 0;
     &__wrapper {
       max-width: 1100px;

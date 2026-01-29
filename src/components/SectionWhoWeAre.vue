@@ -4,6 +4,7 @@
   import { WHO_WE_ARE } from '@/data/data.ts';
   import Button from '@/components/BaseButton.vue';
   import { getUiIcon } from '@/utils/utils.ts';
+  import { modal } from '@/composables/useGlobalModal.ts';
 
   interface Props {
     options?: Record<string, unknown>;
@@ -29,9 +30,10 @@
       <div class="card" v-for="(card, index) in WHO_WE_ARE.cards" :key="index">
         <div class="card__image-circle" v-if="card.img">
           <img
+            v-if="card.img"
+            class="card__img"
             :src="getUiIcon(card.img)"
             :alt="card.title"
-            class="card__img"
             :width="card.img_size"
             :height="card.img_size" />
         </div>
@@ -45,13 +47,16 @@
       <!--END CARD-->
     </div>
     <div class="section-who-we-are__remark remark">{{ WHO_WE_ARE.remark }}</div>
-    <Button class="section-who-we-are__button" :options="{ title: WHO_WE_ARE.button.title }" />
+    <Button
+      class="section-who-we-are__button"
+      :options="{ title: WHO_WE_ARE.button.title, area_label: WHO_WE_ARE.button.area_label, class: 'wide' }"
+      @click="modal.reveal({ source: 'who we are' })" />
   </div>
 </template>
 
 <style lang="scss" scoped>
   .section-who-we-are {
-    outline: 1px dotted rgb(241, 163, 193);
+    outline: 1px dotted rgba(241, 163, 193, 0.505);
     position: relative;
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
@@ -71,7 +76,7 @@
     .card {
       width: 100%;
       max-width: 325px;
-      outline: 1px dotted rgb(200, 200, 200);
+      outline: 1px dotted rgba(200, 200, 200, 0.491);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;

@@ -62,7 +62,7 @@
         :options="{
           title: CONTACT_FORM.button.title,
           type: CONTACT_FORM.button.type,
-          label: CONTACT_FORM.button.aria_label
+          area_label: CONTACT_FORM.button.aria_label
         }"
         :disabled="!isFormValid" />
     </div>
