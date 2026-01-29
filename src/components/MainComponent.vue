@@ -1,4 +1,3 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
   import Header from '@/components/AppHeader.vue';
   import SectionRPS from '@/components/SectionRPS.vue';
@@ -6,6 +5,7 @@
   import SectionHowWeWork from './SectionHowWeWork.vue';
   import SectionDropUsLine from './SectionDropUsLine.vue';
   import Footer from '@/components/AppFooter.vue';
+  import ModalContactForm from '@/components/ModalContactForm.vue';
 </script>
 
 <template>
@@ -16,6 +16,7 @@
     <SectionHowWeWork />
     <SectionDropUsLine />
     <Footer />
+    <ModalContactForm />
   </div>
 </template>
 
