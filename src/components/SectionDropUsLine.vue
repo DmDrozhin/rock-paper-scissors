@@ -1,15 +1,15 @@
-<!-- eslint-disable @typescript-eslint/no-unused-vars -->
 <script setup lang="ts">
   import { DROP_US_A_LINE } from '@/data/data.ts';
   import Button from '@/components/BaseButton.vue';
   import { getUiIcon } from '@/utils/utils.ts';
+  import { modal } from '@/composables/useGlobalModal.ts'
 </script>
 
 <template>
   <div class="section-drop-us-line">
     <h2 class="section-drop-us-line__title">{{ DROP_US_A_LINE.title }}</h2>
     <div class="section-drop-us-line__assertion" v-html="DROP_US_A_LINE.description"></div>
-    <Button class="section-drop-us-line__button" :options="{ title: DROP_US_A_LINE.button.title, class: 'wide' }" />
+    <Button class="section-drop-us-line__button" :options="{ title: DROP_US_A_LINE.button.title, class: 'wide' }" @click="modal.reveal({ source: 'drop-us-line' })"/>
     <div class="section-drop-us-line__image-container">
       <img class="section-drop-us-line__image" :src="getUiIcon(DROP_US_A_LINE.img as any)" :alt="DROP_US_A_LINE.title" />
     </div>
