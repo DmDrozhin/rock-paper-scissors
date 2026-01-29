@@ -2,7 +2,7 @@
   import { computed } from 'vue';
   import icon from '@/assets/images/cardboard_airplane.svg';
 
-  interface ButtonOptions {
+  export interface ButtonOptions {
     title: string;
     label?: string;
     icon?: string;
@@ -43,11 +43,11 @@
 
 <template>
   <button
-    class="button"
-    :class="mainOptions.class"
     v-ripple
-    :aria-label="mainOptions.label"
+    class="button"
     @click="onClick"
+    :class="mainOptions.class"
+    :aria-label="mainOptions.label"
     :type="mainOptions.type"
     :disabled="disabled">
     {{ mainOptions.title }}
@@ -62,6 +62,7 @@
     flex-shrink: 0;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: var(--space-sm);
     border-radius: var(--radius-md);
     background-color: var(--color-primary);
