@@ -1,5 +1,3 @@
 import { useConfirmDialog } from '@vueuse/core';
-
-export const modal = useConfirmDialog<{
-  source?: string;
-}>();
+// Promise-based API for global modals
+export const modal = useConfirmDialog<{ source?: string }>();

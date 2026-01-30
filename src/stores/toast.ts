@@ -18,8 +18,9 @@ export const useToastStore = defineStore('toast', {
   }),
 
   actions: {
+
     show(message: string, type: ToastType = 'success', duration = 3000) {
-      // сбрасываем предыдущий таймер
+      // reset existing timeout
       if (this.timeoutId) {
         clearTimeout(this.timeoutId);
       }
@@ -28,12 +29,14 @@ export const useToastStore = defineStore('toast', {
       this.type = type;
       this.visible = true;
 
+      // set timeout to hide
       this.timeoutId = window.setTimeout(() => {
         this.visible = false;
         this.timeoutId = null;
       }, duration);
     },
 
+    // immediate hide
     hide() {
       this.visible = false;
       if (this.timeoutId) {
