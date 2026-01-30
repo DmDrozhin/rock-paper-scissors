@@ -26,6 +26,7 @@
   --color-text-dark: #000000;
   --color-text-muted: #aaaaaa;
   --color-danger: #ff4d4f;
+  --color-info: #1890ff;
   --input-bg-light: #ffffff;
   /* spacing */
   --space-xs: 4px;
@@ -61,8 +62,8 @@ body {
 }
 #app {
   min-height: 100vh;
-  background-color: var(--color-bg-app);
   max-width: 1440px;
+  min-width: 320px;
   margin: 0 auto;
 }
 * {

@@ -23,5 +23,7 @@
 <style lang="scss" scoped>
   .main-component {
     width: 100%;
+    background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
+    background-color: var(--color-bg-app);
   }
 </style>
