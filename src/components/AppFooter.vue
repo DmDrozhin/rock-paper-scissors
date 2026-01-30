@@ -1,20 +1,46 @@
 <script setup lang="ts">
+  import { computed, watch } from 'vue';
   import { useThrottleFn } from '@vueuse/core';
+
   import { FOOTER } from '@/data/data';
-  import logo from '@/assets/images/RPS_logo.svg';
+
   import BaseInput from '@/components/BaseInput.vue';
   import Button from '@/components/BaseButton.vue';
+  import UiOverlayLoader from '@/components/UiOverlayLoader.vue';
+
   import { getUiIcon } from '@/utils/utils';
-  import { useEmailField } from '@/composables/useEmailField';
+  import { useToastStore } from '@/stores/toast';
+  import { useEmailForm } from '@/composables/useEmailForm';
 
-  const { email, error, isValid, touch } = useEmailField(false);
+  import logo from '@/assets/images/RPS_logo.svg';
 
-  const submit = useThrottleFn(() => {
-    touch();
-    if (!isValid.value) return;
+  const toast = useToastStore();
 
-    console.log('Submit email:', email.value);
-  }, 3000);
+  const { submit, email, error, isValid, touch, state } = useEmailForm();
+
+  const throttledSubmit = useThrottleFn(submit, 2000);
+
+  const errorMessage = computed(() => {
+    return error.value && !state.success ? error.value : '';
+  });
+
+  // 👀 watch for error or success to show the toast
+  watch(
+    () => state.error,
+    (error) => {
+      if (error) {
+        toast.show('Error sending message', 'error');
+      }
+    }
+  );
+  watch(
+    () => state.success,
+    (success, prev) => {
+      if (success && !prev) {
+        toast.show('Email sent successfully', 'success');
+      }
+    }
+  );
 </script>
 
 <template>
@@ -27,7 +53,8 @@
         <div class="app-footer__assertion" v-html="FOOTER.description"></div>
       </div>
       <div class="app-footer__actions">
-        <form class="app-footer__form" @submit.prevent="submit">
+        <form class="app-footer__form" @submit.prevent="throttledSubmit">
+          <UiOverlayLoader v-if="state.loading" />
           <BaseInput
             v-model="email"
             name="email"
@@ -35,7 +62,7 @@
             :placeholder="FOOTER.input.placeholder"
             :icon="getUiIcon(FOOTER.input.icon)"
             :icon_size="FOOTER.input.icon_size"
-            :error="error"
+            :error="errorMessage"
             @blur="touch" />
           <Button
             :options="{ title: FOOTER.button.title, type: 'submit', area_label: FOOTER.button.area_label }"
@@ -87,6 +114,7 @@
       max-width: 450px;
     }
     &__form {
+      position: relative;
       display: flex;
       gap: var(--space-md);
       height: fit-content;
