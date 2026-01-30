@@ -1,29 +1,53 @@
 <script setup lang="ts">
-  import { modal } from '@/composables/useGlobalModal'
-  import { CONTACT_FORM } from '@/data/data'
-  import { getUiIcon } from '@/utils/utils'
-  import { useContactForm } from '@/composables/useContactForm'
+  import { watch } from 'vue';
+  import { modal } from '@/composables/useGlobalModal';
+  import { CONTACT_FORM } from '@/data/data';
+  import { getUiIcon } from '@/utils/utils';
+  import { useContactForm } from '@/composables/useContactForm';
+  import { useToastStore } from '@/stores/toast';
 
-  import BaseInput from '@/components/BaseInput.vue'
-  import BaseButton from '@/components/BaseButton.vue'
-  import BaseTextArea from '@/components/BaseTextArea.vue'
+  import BaseInput from '@/components/BaseInput.vue';
+  import BaseButton from '@/components/BaseButton.vue';
+  import BaseTextArea from '@/components/BaseTextArea.vue';
+  import UiOverlayLoader from '@/components/UiOverlayLoader.vue';
+
+  const toast = useToastStore();
 
   const {
+    // form
     form,
     touched,
+    // state
+    state,
+    // errors
     nameError,
     emailError,
     messageError,
+    // validity
     isFormValid,
+    // actions
     submit
   } = useContactForm((form) => {
-    console.log('Submit form:', form)
-    modal.confirm(form)
-  })
+    // 👌 Confirm the modal for successful submission and close it
+    modal.confirm(form);
+    // 👍 Show success toast
+    toast.show('Message sent successfully', 'success');
+  });
+
+  // 👀 watch for error and show 👎 error toast
+  watch(
+    () => state.error,
+    (error) => {
+      if (error) {
+        toast.show('Error sending message', 'error');
+      }
+    }
+  );
 </script>
 
 <template>
   <form @submit.prevent="submit" class="contact-form">
+    <UiOverlayLoader v-if="state.loading" />
     <div class="contact-form__container">
       <div class="header">
         <h2 class="header__title">{{ CONTACT_FORM.title }}</h2>
@@ -58,13 +82,17 @@
         label=""
         :error="messageError"
         @blur="touched.message = true" />
-      <BaseButton
-        :options="{
-          title: CONTACT_FORM.button.title,
-          type: CONTACT_FORM.button.type,
-          area_label: CONTACT_FORM.button.aria_label
-        }"
-        :disabled="!isFormValid" />
+      <div class="contact-form__actions">
+        <BaseButton
+          :options="{
+            title: CONTACT_FORM.button.title,
+            type: CONTACT_FORM.button.type,
+            area_label: CONTACT_FORM.button.aria_label,
+            class: 'block'
+          }"
+          :disabled="!isFormValid" />
+        <div class="contact-form__error-message" v-if="state.error">{{ state.error }}</div>
+      </div>
     </div>
   </form>
 </template>
@@ -121,6 +149,21 @@
       display: flex;
       flex-direction: column;
       gap: calc(var(--space-lg) + 2px);
+    }
+    &__actions {
+      width: 100%;
+      position: relative;
+      // display: contents;
+      outline: 1px dotted rgba(16, 229, 45, 0.432);
+    }
+    &__error-message {
+      position: absolute;
+      left: 0;
+      bottom: calc(-1 * var(--space-lg));
+      margin-top: var(--space-sm);
+      font-size: 14px;
+      color: var(--color-danger);
+      text-align: center;
     }
   }
   .header {
