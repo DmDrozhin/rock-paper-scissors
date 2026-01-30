@@ -1,29 +1,51 @@
 <script setup lang="ts">
-  import { modal } from '@/composables/useGlobalModal'
-  import { CONTACT_FORM } from '@/data/data'
-  import { getUiIcon } from '@/utils/utils'
-  import { useContactForm } from '@/composables/useContactForm'
+  import { watchEffect } from 'vue';
+  import { modal } from '@/composables/useGlobalModal';
+  import { CONTACT_FORM } from '@/data/data';
+  import { getUiIcon } from '@/utils/utils';
+  import { useContactForm } from '@/composables/useContactForm';
+  import { useToastStore } from '@/stores/toast';
 
-  import BaseInput from '@/components/BaseInput.vue'
-  import BaseButton from '@/components/BaseButton.vue'
-  import BaseTextArea from '@/components/BaseTextArea.vue'
+  import BaseInput from '@/components/BaseInput.vue';
+  import BaseButton from '@/components/BaseButton.vue';
+  import BaseTextArea from '@/components/BaseTextArea.vue';
+  import UiOverlayLoader from '@/components/UiOverlayLoader.vue';
+
+  const toast = useToastStore();
 
   const {
+    // form
     form,
     touched,
+    // state
+    state,
+    // errors
     nameError,
     emailError,
     messageError,
+    // validity
     isFormValid,
+    // actions
     submit
   } = useContactForm((form) => {
-    console.log('Submit form:', form)
-    modal.confirm(form)
-  })
+    console.log('Submit form:', form);
+    modal.confirm(form);
+  });
+
+  // Watchers for success and error states to show toast notifications
+  watchEffect(() => {
+    if (state.success) {
+      toast.show('Message sent successfully', 'success');
+    }
+    if (state.error) {
+      toast.show('Error sending message', 'error');
+    }
+  });
 </script>
 
 <template>
   <form @submit.prevent="submit" class="contact-form">
+    <UiOverlayLoader v-if="state.loading" />
     <div class="contact-form__container">
       <div class="header">
         <h2 class="header__title">{{ CONTACT_FORM.title }}</h2>
