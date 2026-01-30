@@ -17,7 +17,7 @@
 <style lang="scss" scoped>
   .toast {
     position: fixed;
-    top: var(--space-lg);
+    top: var(--space-xxl);
     right: 0;
     padding: 12px 24px;
     border-radius: var(--radius-lg) 0 0 var(--radius-lg);
@@ -34,14 +34,15 @@
     }
   }
 
-  .fade-slide-enter-active,
-  .fade-slide-leave-active {
-    transition: all 0.25s ease;
+  .fade-slide-enter-active {
+    transition: all 0.3s ease-in;
   }
-
+  .fade-slide-leave-active {
+    transition: all 0.5s ease-out;
+  }
   .fade-slide-enter-from,
   .fade-slide-leave-to {
     opacity: 0;
-    transform: translateX(10px);
+    transform: translateX(150px);
   }
 </style>
