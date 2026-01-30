@@ -83,6 +83,9 @@
     &.wide {
       padding: 0 var(--space-xxl);
     }
+    &.block {
+      width: 100%;
+    }
     &:disabled {
       background-color: var(--color-disabled);
       pointer-events: none;
