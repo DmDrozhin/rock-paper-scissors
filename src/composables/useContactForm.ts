@@ -1,6 +1,11 @@
 import { reactive, computed } from 'vue';
 import { validateEmail, validateMinLength } from '@/utils/validator';
+import { useFormspree } from './useFormspree';
+import { useMockMode } from './useMockMode';
 
+const { isMock, simulate } = useMockMode();
+
+const { send } = useFormspree();
 interface ContactForm {
   name: string;
   email: string;
@@ -14,7 +19,7 @@ export type FormState = {
   message: string;
 };
 
-export function useContactForm(onSubmit?: (form: FormState) => void) {
+export function useContactForm(onSuccess?: (form: FormState) => void) {
   // ---------------- form ----------------
   const form = reactive<ContactForm>({
     name: '',
@@ -44,9 +49,7 @@ export function useContactForm(onSubmit?: (form: FormState) => void) {
   const isEmailValid = computed(() => !rawEmailError.value);
   const isMessageValid = computed(() => form.message.trim().length >= 10);
 
-  const isFormValid = computed(
-    () => isNameValid.value && isEmailValid.value && isMessageValid.value
-  );
+  const isFormValid = computed(() => isNameValid.value && isEmailValid.value && isMessageValid.value);
 
   // ---------------- UI errors ----------------
   const nameError = computed(() => {
@@ -84,26 +87,7 @@ export function useContactForm(onSubmit?: (form: FormState) => void) {
     state.mountedAt = Date.now();
   }
 
-  // ---------------- Formspree ----------------
-  async function sendToFormspree(payload: FormState) {
-    return fetch(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        ...payload,
-        _template: 'table'
-      })
-    });
-  }
-
-  // ---------------- mock mode ----------------
-  const isMock =
-    import.meta.env.DEV && import.meta.env.VITE_MOCK_FORMS === 'true';
-
-  // ---------------- submit ----------------
+  // ---------------- 🚀 SUBMIT ----------------
   async function submit() {
     if (state.loading) return;
 
@@ -129,42 +113,49 @@ export function useContactForm(onSubmit?: (form: FormState) => void) {
     state.loading = true;
 
     try {
-      // optional hook (analytics, etc.)
-      onSubmit?.({
-        name: form.name,
-        email: form.email,
-        message: form.message
-      });
-
-      // mock → для теста тостов и лоадера
+      // mock mode
       if (isMock) {
-        await new Promise((r) => setTimeout(r, 600));
+        await simulate(1000);
         state.success = true;
+        // state.error = 'Failed to send message ❌. Please try again later.';
+        onSuccess?.({
+          name: form.name,
+          email: form.email,
+          message: form.message
+        });
         resetForm();
         return;
       }
-
-      const response = await sendToFormspree({
+      // 👌 real submission
+      const response = await send(import.meta.env.VITE_FORMSPREE_ENDPOINT, {
         name: form.name,
         email: form.email,
         message: form.message
       });
 
       if (!response.ok) {
-        throw new Error('Formspree error');
+        throw new Error('FORMSPREE error ❌');
       }
 
       state.success = true;
+
+      // callback
+      onSuccess?.({
+        name: form.name,
+        email: form.email,
+        message: form.message
+      });
+
       resetForm();
     } catch (err) {
-      state.error = 'Failed to send message. Please try again later.';
+      state.error = 'Failed to send message ❌. Please try again later.';
       console.error('Contact form submission error:', err);
     } finally {
       state.loading = false;
     }
   }
 
-  // ---------------- TEST HELPERS ----------------
+  // ---------------- 🐞 TEST HELPERS ----------------
   // можно дергать вручную, не отправляя форму
   function mockSuccess() {
     state.success = true;

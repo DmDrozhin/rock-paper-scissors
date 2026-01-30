@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import { watchEffect } from 'vue';
+  import { watch } from 'vue';
   import { modal } from '@/composables/useGlobalModal';
   import { CONTACT_FORM } from '@/data/data';
   import { getUiIcon } from '@/utils/utils';
@@ -28,19 +28,21 @@
     // actions
     submit
   } = useContactForm((form) => {
-    console.log('Submit form:', form);
+    // 👌 Confirm the modal for successful submission and close it
     modal.confirm(form);
+    // 👍 Show success toast
+    toast.show('Message sent successfully', 'success');
   });
 
-  // Watchers for success and error states to show toast notifications
-  watchEffect(() => {
-    if (state.success) {
-      toast.show('Message sent successfully', 'success');
+  // 👀 watch for error and show 👎 error toast
+  watch(
+    () => state.error,
+    (error) => {
+      if (error) {
+        toast.show('Error sending message', 'error');
+      }
     }
-    if (state.error) {
-      toast.show('Error sending message', 'error');
-    }
-  });
+  );
 </script>
 
 <template>
@@ -80,13 +82,17 @@
         label=""
         :error="messageError"
         @blur="touched.message = true" />
-      <BaseButton
-        :options="{
-          title: CONTACT_FORM.button.title,
-          type: CONTACT_FORM.button.type,
-          area_label: CONTACT_FORM.button.aria_label
-        }"
-        :disabled="!isFormValid" />
+      <div class="contact-form__actions">
+        <BaseButton
+          :options="{
+            title: CONTACT_FORM.button.title,
+            type: CONTACT_FORM.button.type,
+            area_label: CONTACT_FORM.button.aria_label,
+            class: 'block'
+          }"
+          :disabled="!isFormValid" />
+        <div class="contact-form__error-message" v-if="state.error">{{ state.error }}</div>
+      </div>
     </div>
   </form>
 </template>
@@ -143,6 +149,21 @@
       display: flex;
       flex-direction: column;
       gap: calc(var(--space-lg) + 2px);
+    }
+    &__actions {
+      width: 100%;
+      position: relative;
+      // display: contents;
+      outline: 1px dotted rgba(16, 229, 45, 0.432);
+    }
+    &__error-message {
+      position: absolute;
+      left: 0;
+      bottom: calc(-1 * var(--space-lg));
+      margin-top: var(--space-sm);
+      font-size: 14px;
+      color: var(--color-danger);
+      text-align: center;
     }
   }
   .header {
