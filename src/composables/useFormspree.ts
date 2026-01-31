@@ -1,26 +1,37 @@
 import { useCaptcha } from './useCaptcha';
 
 export function useFormspree() {
-  // ---------------- captcha ----------------
+  // Get reCAPTCHA token function
   const { getToken } = useCaptcha();
-  // ---------------- send ----------------
+
+  // 🚀 Function to send form data to Formspree
   async function send(endpoint: string, payload: Record<string, unknown>) {
     const captchaToken = await getToken('form_submit');
-    // sending data to Formspree
+
+    // Prepare form data
+    const formData = new FormData();
+
+    // Append payload fields
+    Object.entries(payload).forEach(([key, value]) => {
+      formData.append(key, String(value));
+    });
+
+    // required by Formspree
+    formData.append('g-recaptcha-response', captchaToken);
+    formData.append('_template', 'table');
+
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: 'application/json'
+        // ❌ НЕ ставим Content-Type — браузер сам поставит boundary
       },
-      body: JSON.stringify({
-        ...payload,
-        _template: 'table',
-        'g-recaptcha-response': captchaToken
-      })
+      body: formData
     });
 
     if (!response.ok) {
+      const text = await response.text();
+      console.error('Formspree response:', text);
       throw new Error('👿 Formspree Error');
     }
 
