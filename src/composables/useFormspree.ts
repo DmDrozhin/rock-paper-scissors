@@ -1,6 +1,11 @@
+import { useCaptcha } from './useCaptcha';
+
 export function useFormspree() {
+  // ---------------- captcha ----------------
+  const { getToken } = useCaptcha();
   // ---------------- send ----------------
   async function send(endpoint: string, payload: Record<string, unknown>) {
+    const captchaToken = await getToken('form_submit');
     // sending data to Formspree
     const response = await fetch(endpoint, {
       method: 'POST',
@@ -10,7 +15,8 @@ export function useFormspree() {
       },
       body: JSON.stringify({
         ...payload,
-        _template: 'table'
+        _template: 'table',
+        'g-recaptcha-response': captchaToken
       })
     });
 
