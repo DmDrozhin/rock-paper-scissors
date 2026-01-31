@@ -7,5 +7,3 @@
   <MainComponent />
   <UiToast />
 </template>
-
-<style scoped></style>
