@@ -12,7 +12,7 @@
       options?: ModalOptions;
     }>(),
     {
-      options: () => ({ hasCloseButton: true })
+      options: () => ({ hasCloseButton: true, customClass: '' })
     }
   );
 
@@ -31,9 +31,15 @@
 <template>
   <teleport to="body">
     <transition name="modal-fade">
-      <div v-if="isRevealed" class="overlay-layer" :class="options.customClass" @click.self="cancel()">
-        <div class="modal-block">
-          <button v-if="options.hasCloseButton" class="modal-block__close-button" @click="cancel()" aria-label="close modal window button">×</button>
+      <div v-if="isRevealed" class="overlay-layer" @click.self="cancel()">
+        <div class="modal-block" :class="options.customClass">
+          <button
+            v-if="options.hasCloseButton"
+            class="modal-block__close-button"
+            @click="cancel()"
+            aria-label="Close modal">
+            ×
+          </button>
           <slot name="content" />
         </div>
       </div>
@@ -46,24 +52,35 @@
     position: fixed;
     inset: 0;
     z-index: 1000;
-    display: grid;
-    place-content: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: var(--space-md);
-  }
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: var(--space-lg);
 
+    overflow-y: auto;
+
+    @include respond-down(sm) {
+      padding: 0;
+      align-items: flex-start;
+    }
+  }
   .modal-block {
     position: relative;
-    width: fit-content;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--space-md);
-    &.paddings-md {
-      padding: var(--space-md);
+
+    width: 100%;
+
+    &.w-630 {
+      max-width: 630px;
     }
-    &.paddings-lg {
-      padding: var(--space-lg);
+    @include respond-down(sm) {
+      min-height: 100vh;
     }
+
     &__close-button {
+      position: absolute;
+      top: var(--space-sm);
+      right: var(--space-sm);
       $size: 32px;
       width: $size;
       height: $size;
@@ -71,14 +88,11 @@
       line-height: 1;
       border-radius: 50%;
       box-shadow: var(--shadow-sm);
-      position: absolute;
-      top: var(--space-sm);
-      right: var(--space-sm);
       background: transparent;
       border: none;
       cursor: pointer;
       color: var(--color-text-light);
-      z-index: 100;
+      z-index: 101;
       &:hover {
         background-color: var(--color-bg-light);
       }

@@ -98,19 +98,35 @@
 </template>
 <style lang="scss" scoped>
   .contact-form {
-    width: 100%;
-    width: 630px;
-    height: 700px;
+    position: relative;
+    padding: var(--space-xl);
     position: relative;
     overflow: hidden;
+
     background-image: url('../assets/images/form-bg.svg');
     background-repeat: no-repeat;
-    background-position: center center;
-    background-size: cover;
+    background-size: contain;
+
     background-color: var(--color-secondary);
-    border: 1px solid #1d1f23;
     border-radius: var(--radius-md);
-    padding: var(--space-xl);
+
+    $shadow-color: #fec60e54;
+    box-shadow:
+      // 0px 0px 40px $shadow-color,
+      // 0px 0px 27px $shadow-color,
+      0px 0px 10px $shadow-color,
+      0px 0px 13px $shadow-color,
+      0px 0px 5px $shadow-color,
+      0px 0px 2px $shadow-color;
+
+    @include respond-down(sm) {
+      // height: 100vh;
+      padding: var(--space-lg);
+      border-radius: 0;
+      box-shadow: none;
+      border: none;
+      min-height: 100vh;
+    }
     &::before {
       content: '';
       position: absolute;
@@ -124,6 +140,7 @@
       transform: translate(50%, 50%);
       background: radial-gradient(50% 50% at 50% 50%, #fec40e 40%, rgba(254, 196, 14, 0) 100%);
       filter: blur(120px);
+      pointer-events: none;
       z-index: 0;
     }
     &:after {
@@ -146,15 +163,16 @@
       width: 100%;
       max-width: 420px;
       margin: 0 auto;
+      margin-bottom: var(--space-xxl);
       display: flex;
       flex-direction: column;
       gap: calc(var(--space-lg) + 2px);
+      z-index: 2;
     }
     &__actions {
       width: 100%;
       position: relative;
-      // display: contents;
-      outline: 1px dotted rgba(16, 229, 45, 0.432);
+      margin-bottom: var(--space-lg);
     }
     &__error-message {
       position: absolute;
@@ -174,9 +192,13 @@
       font-style: normal;
       font-weight: 600;
       font-size: 52px;
-      line-height: 42px;
+      line-height: 56px;
       letter-spacing: 0.05em;
       color: var(--color-text-light);
+      @include respond-down(sm) {
+        font-size: 42px;
+        line-height: 42px;
+      }
     }
     &__description {
       font-family: 'Jost';

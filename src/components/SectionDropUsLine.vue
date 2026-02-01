@@ -26,45 +26,49 @@
     outline: 1px dotted rgba(241, 104, 12, 0.479);
     text-align: center;
     padding: var(--space-xxl) var(--space-lg);
+    @include respond-down(sm) {
+      padding: var(--space-xxl) var(--space-md);
+    }
     &__title {
       margin-bottom: var(--space-xl);
     }
     &__assertion {
-      margin-bottom: var(--space-xxl);
       font-size: 28px;
+      max-width: 476px;
+      margin: 0 auto;
+      margin-bottom: var(--space-xxl);
     }
     &__button {
       margin: 0 auto;
-      margin-bottom: var(--space-xs);
+      margin-bottom: var(--space-sm);
     }
     &__image-container {
-      outline: 1px dashed rgba(150, 150, 150, 0.491);
+      // outline: 1px dashed rgba(150, 150, 150, 0.491);
       position: relative;
       margin: 0 auto;
-      width: fit-content;
-      height: 730px;
       &::before {
         content: '';
-        display: block;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        $size: 450px;
+        $size: clamp(200px, 40vw, 450px); // or 250
+        $blur: clamp(60px, 10vw, 120px);
         width: $size;
         height: $size;
         border-radius: 50%;
         background: radial-gradient(50% 50% at 50% 50%, #fec40e 100%, rgba(254, 196, 14, 0) 100%);
         opacity: 0.5;
-        filter: blur(120px);
+        filter: blur($blur);
         z-index: 0;
       }
     }
+
     &__image {
-      position: relative;
+      width: 100%;
+      max-height: 730px;
+      object-fit: contain;
       z-index: 1;
-      max-width: 100%;
-      height: auto;
     }
   }
 </style>

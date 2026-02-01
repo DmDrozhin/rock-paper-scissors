@@ -5,7 +5,7 @@
 </script>
 
 <template>
-  <ModalWindow>
+  <ModalWindow :options="{ customClass: 'w-630', hasCloseButton: true }">
     <template #content>
       <ContactForm v-if="modal.isRevealed.value" />
     </template>
