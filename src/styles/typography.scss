@@ -1,3 +1,5 @@
+@use '@/styles/mixins.scss' as *;
+
 $font-header: 'Orbitron', sans-serif;
 $font-body: 'Jost', sans-serif;
 $font-main:
@@ -25,6 +27,14 @@ h2 {
   line-height: 92px;
   letter-spacing: 0.05em;
   color: #ffffff;
+  @include respond-down(md) {
+    font-size: 60px;
+    line-height: 62px;
+  }
+  @include respond-down(sm) {
+    font-size: 40px;
+    line-height: 42px;
+  }
 }
 h3 {
   font-family: $font-header; // Orbitron
@@ -43,6 +53,10 @@ h3 {
   line-height: 32px;
   letter-spacing: 0.05em;
   color: #ffffff;
+  @include respond-down(sm) {
+    font-size: 22px;
+    line-height: 30px;
+  }
 }
 .remark {
   font-family: $font-main; // Orbit, system fonts
