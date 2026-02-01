@@ -65,18 +65,34 @@
     justify-content: center;
     gap: var(--space-xxl);
     overflow: hidden;
+    @include respond-down(sm) {
+      padding: var(--space-xxl) var(--space-md);
+    }
     &__title {
+      text-align: center;
+    }
+    &__assertion {
+      max-width: 600px;
       text-align: center;
     }
     &__cards {
       display: flex;
       justify-content: center;
       gap: var(--space-xl);
+      @include respond-down(xl) {
+        // gap: var(--space-md);
+      }
+      @include respond-down(lg) {
+        flex-wrap: wrap;
+      }
+      @include respond-down(sm) {
+        gap: var(--space-xl);
+      }
     }
     .card {
       width: 100%;
       max-width: 325px;
-      outline: 1px dotted rgba(200, 200, 200, 0.491);
+      // outline: 1px dotted rgba(200, 200, 200, 0.491);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;
@@ -96,6 +112,10 @@
         line-height: 28px;
         letter-spacing: 0.05em;
         margin-bottom: var(--space-xs);
+        @include respond-down(lg) {
+          // font-size: 18px;
+          // line-height: 24px;
+        }
         &:last-child {
           margin-bottom: 0;
         }
@@ -125,6 +145,9 @@
         }
       }
     }
+    &__remark {
+      text-align: center;
+    }
     &__button {
       margin-top: var(--space-lg);
     }
@@ -143,6 +166,21 @@
         0px 0px 115px #fec40e,
         0px 0px 33px #fec40e,
         0px 0px 16px #fec40e;
+      transition: all 0.3s ease-in-out;
+      @include respond-down(lg) {
+        top: 10%;
+        height: 80%;
+        bottom: 10%;
+      }
+      @include respond-down(md) {
+        width: 15px;
+        top: 10%;
+        height: 80%;
+        bottom: 10%;
+      }
+      @include respond-down(sm) {
+        width: 13px;
+      }
     }
     &::before {
       @include gradient-ellipse;

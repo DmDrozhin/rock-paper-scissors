@@ -19,12 +19,16 @@
 
 <style lang="scss" scoped>
   .app-header {
+    // outline: 1px solid rgba(204, 225, 171, 0.484);
     width: 100%;
     min-height: 50px;
-    padding: var(--space-lg) 0;
-    outline: 1px solid rgba(204, 225, 171, 0.484);
+    padding: var(--space-lg) var(--space-lg);
+    @include respond-down(sm) {
+      padding: var(--space-lg) var(--space-md);
+      padding: var(--space-lg) var(--space-md);
+    }
     &__logo {
-      height: 70px;
+      max-width: 70px;
     }
     &__container {
       max-width: 1200px;

@@ -61,6 +61,7 @@
 </template>
 
 <style lang="scss" scoped>
+  @use '@/styles/scrollbar.scss' as *;
   .base-textarea {
     display: flex;
     flex-direction: column;
@@ -80,6 +81,9 @@
       border-radius: var(--radius-md);
       transition: var(--transition-base);
       align-items: flex-start;
+      @include respond-down(sm) {
+        padding: var(--space-sm) var(--space-md);
+      }
     }
 
     &__icon {
@@ -102,7 +106,7 @@
       font-size: 18px;
       line-height: 1.4;
       min-height: 80px;
-
+      @include Scrollbar;
       &::placeholder {
         color: var(--color-text-muted);
       }

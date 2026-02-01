@@ -1,0 +1,21 @@
+@use 'sass:map';
+@use './_breakpoints.scss' as breakpoints;
+
+// Mixin for applying styles for viewports equal to or larger than the specified breakpoint
+@mixin respond-up($breakpoint) {
+  $value: map.get(breakpoints.$custom-breakpoints, $breakpoint);
+  @if $value {
+    @media (min-width: $value) {
+      @content;
+    }
+  }
+}
+// Mixin for applying styles for viewports equal to or smaller than the specified breakpoint
+@mixin respond-down($breakpoint) {
+  $next-value: map.get(breakpoints.$custom-breakpoints, $breakpoint);
+  @if $next-value {
+    @media (max-width: #{$next-value - 0.02}) {
+      @content;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+@mixin Scrollbar {
+  overflow-y: auto;
+  /* 🔹 Firefox */
+  scrollbar-width: thin; /* thin | auto | none */
+  scrollbar-color: #ccc transparent; /* thumb | track */
+  /* 🔹 WebKit browsers (Chrome, Edge, Safari, Opera) */
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 4px;
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #999;
+  }
+}

@@ -59,7 +59,6 @@
   .button {
     height: fit-content;
     min-height: 56px;
-    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -69,6 +68,7 @@
     text-transform: uppercase;
     color: var(--color-text-dark);
     transition: var(--transition-base);
+    white-space: nowrap;
     font-family: Orbitron, sans-serif;
     font-style: normal;
     font-weight: 500;
@@ -85,6 +85,9 @@
     }
     &.block {
       width: 100%;
+    }
+    &.no-shrink {
+      flex-shrink: 0;
     }
     &:disabled {
       background-color: var(--color-disabled);

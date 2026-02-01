@@ -18,6 +18,15 @@ export default defineConfig(({ mode }) => ({
   server: {
     port: 3000
   },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @use "@/styles/mixins.scss" as *;
+      `
+      }
+    }
+  },
   build: {
     cssCodeSplit: false, // ❗ Single CSS file
     // https://vite.dev/config/build-options/#build-minify

@@ -26,6 +26,9 @@
     padding: var(--space-xxl) var(--space-lg);
     text-align: center;
     outline: 1px dotted rgba(204, 108, 236, 0.443);
+    @include respond-down(sm) {
+      padding: var(--space-xxl) var(--space-md);
+    }
     &__title {
       margin-bottom: var(--space-xl);
     }
@@ -36,12 +39,24 @@
       max-width: 1000px;
       margin: 0 auto;
       display: grid;
-      grid-template-columns: repeat(3, 150px);
-      gap: var(--space-xxl);
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-xxl); // xl - 32px
       justify-content: space-between;
+      padding: 0 var(--space-xxl); // xxl - 40px
+      @include respond-down(md) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-lg); // lg - 24px
+      }
+      @include respond-down(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        padding: 0 var(--space-md); // md - 16px
+      }
     }
     .card {
-      outline: 1px dashed rgba(150, 150, 150, 0.432);
+      margin: 0 auto;
+      width: 100%;
+      max-width: 150px;
+      // outline: 1px dashed rgba(150, 150, 150, 0.432);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;
@@ -55,6 +70,11 @@
         line-height: 28px;
         letter-spacing: 0.05em;
         color: var(--color-text-light);
+        @include respond-down(sm) {
+          font-size: 20px;
+          line-height: 24px;
+          font-weight: 500;
+        }
       }
       &__image-circle {
         position: relative;

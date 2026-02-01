@@ -30,7 +30,9 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-xxl);
-    // &__title {}
+    &__title {
+      text-align: center;
+    }
     &__description {
       max-width: 700px;
       text-align: center;

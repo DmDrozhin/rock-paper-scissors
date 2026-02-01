@@ -14,6 +14,7 @@ export const UI_ICONS = {
   // --- --- ---
   EMAIL: 'email.svg',
   LINKEDIN: 'linkedin.svg',
+  WHATSUP: 'whatsup.svg',
   // --- --- ---
   FORM_USER: 'form_account.svg',
   FORM_EMAIL: 'email.svg',

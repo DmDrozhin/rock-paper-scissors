@@ -46,11 +46,11 @@
 <template>
   <footer class="app-footer">
     <div class="app-footer__wrapper">
-      <div class="app-footer__logo">
-        <a v-if="logo" href="#top" aria-label="home link">
-          <img :src="logo" alt="web site logo" width="100" />
+      <div class="app-footer__logo logo-block">
+        <a class="logo-block__link" v-if="logo" href="#top" aria-label="home link">
+          <img class="logo-block__image" :src="logo" alt="web site logo" width="100" />
         </a>
-        <div class="app-footer__assertion" v-html="FOOTER.description"></div>
+        <div class="logo-block__text" v-html="FOOTER.description"></div>
       </div>
       <div class="app-footer__actions">
         <form class="app-footer__form" @submit.prevent="throttledSubmit">
@@ -66,7 +66,8 @@
             @blur="touch" />
           <Button
             :options="{ title: FOOTER.button.title, type: 'submit', area_label: FOOTER.button.area_label }"
-            :disabled="!isValid" />
+            :disabled="!isValid"
+            :class="'no-shrink'" />
         </form>
         <div class="app-footer__socials">
           <a
@@ -77,7 +78,23 @@
             rel="noopener noreferrer"
             :href="FOOTER.socials.linkedin.link"
             :aria-label="FOOTER.socials.linkedin.alt">
-            <img :src="getUiIcon(FOOTER.socials.linkedin.icon)" :alt="FOOTER.socials.linkedin.alt" width="32" />
+            <img
+              class="social-link__icon linkedin"
+              :src="getUiIcon(FOOTER.socials.linkedin.icon)"
+              :alt="FOOTER.socials.linkedin.alt" />
+          </a>
+          <a
+            v-if="FOOTER.socials.whatsup"
+            v-ripple
+            class="social-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            :href="FOOTER.socials.whatsup.link"
+            :aria-label="FOOTER.socials.whatsup.alt">
+            <img
+              class="social-link__icon whatsup"
+              :src="getUiIcon(FOOTER.socials.whatsup.icon)"
+              :alt="FOOTER.socials.whatsup.alt" />
           </a>
         </div>
       </div>
@@ -91,27 +108,52 @@
 <style lang="scss" scoped>
   .app-footer {
     outline: 1px dotted rgba(142, 140, 240, 0.482);
-    padding: var(--space-xxl) 0;
+    padding: var(--space-xxl) var(--space-lg);
+    @include respond-down(sm) {
+      padding: var(--space-xxl) var(--space-md);
+    }
     &__wrapper {
       max-width: 1100px;
       margin: 0 auto;
-      padding: var(--space-lg);
       display: flex;
       justify-content: space-between;
-      gap: var(--space-xl);
+      column-gap: var(--space-xxl);
+      row-gap: var(--space-xl);
+      transition: all 0.3s ease-in-out;
+      @include respond-down(md) {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
     }
-    &__assertion {
-      max-width: 324px;
-      margin-top: var(--space-xl);
-      font-family: var(--font-header);
-      font-weight: 500;
-      font-size: 20px;
-      line-height: 140%;
-      letter-spacing: 1px;
-      color: var(--color-text-light);
+    .logo-block {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+      @include respond-down(md) {
+        flex-direction: row;
+      }
+      &__link {
+        display: inline-block;
+      }
+      &__image {
+        max-width: 100px;
+      }
+      &__text {
+        max-width: 324px;
+        font-family: var(--font-header);
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 140%;
+        letter-spacing: 1px;
+        color: var(--color-text-light);
+        text-align: left;
+      }
     }
     &__actions {
+      width: 100%;
       max-width: 450px;
+      margin-bottom: 40px;
     }
     &__form {
       position: relative;
@@ -119,13 +161,39 @@
       gap: var(--space-md);
       height: fit-content;
       margin-bottom: 76px;
+      @include respond-down(sm) {
+        flex-direction: column;
+        gap: var(--space-lg);
+      }
     }
     &__socials {
       display: flex;
-      gap: var(--space-md);
+      align-items: center;
+      gap: var(--space-xl);
+      @include respond-down(sm) {
+        justify-content: center;
+      }
     }
     .social-link {
-      overflow: hidden;
+      &__icon {
+        width: 32px;
+        height: 32px;
+        transition: all 0.3s ease-in-out;
+        &.linkedin {
+          @include respond-down(sm) {
+            width: 46px;
+            height: 46px;
+          }
+        }
+        &.whatsup {
+          width: 34px;
+          height: 36px;
+          @include respond-down(sm) {
+            width: 50px;
+            height: 52px;
+          }
+        }
+      }
     }
     &__bottom {
       padding: var(--space-md);
