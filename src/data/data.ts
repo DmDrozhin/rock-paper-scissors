@@ -58,7 +58,7 @@ export const WHO_WE_ARE: WhoWeAre = {
   remark: '*Each task is approached as a separate, clearly defined solution*',
   button: {
     title: 'Discuss',
-    area_label: 'Let\'s discuss button'
+    area_label: "Let's discuss button"
   }
 };
 
@@ -105,14 +105,14 @@ export const HOW_WE_WORK: HowWeWork = {
 export const DROP_US_A_LINE = {
   title: 'Drop us a line',
   description:
-    '<div class="assertion">Have a specific email <span class="accent-text">task</span> in <br>mind?<br> Let’s discuss the <span class="accent-text">solution.</span></div>',
+    '<span class="assertion">Have a specific email <span class="accent-text">task</span> in mind?<br> Let’s discuss the <span class="accent-text">solution.</span></span>',
   button: { title: 'Contact', area_label: 'Contact us button' },
   img: 'WORLD' as UiIcon
 };
 
 export const FOOTER = {
   description:
-    '<div>Focused on email marketing. One <span class="accent-text">task</span> - one <span class="accent-text">solution.</span></div>',
+    '<span>Focused on email marketing. One <span class="accent-text">task</span> - one <span class="accent-text">solution.</span></span>',
   input: {
     type: 'email',
     name: 'email',
@@ -124,11 +124,15 @@ export const FOOTER = {
   },
   button: { title: 'Submit', area_label: 'Submit email button' },
   socials: {
-    // twitter: 'https://twitter.com/rockpaperscisss',
     linkedin: {
       link: '#',
       icon: 'LINKEDIN' as UiIcon,
-      alt: 'Rock Paper Scissors LinkedIn'
+      alt: 'Link to Rock Paper Scissors LinkedIn page'
+    },
+    whatsup: {
+      link: '#',
+      icon: 'WHATSUP' as UiIcon,
+      alt: 'Link to Rock Paper Scissors WhatsUp chat'
     }
     // facebook: 'https://www.facebook.com/rockpaperscissorsagency'
   },
