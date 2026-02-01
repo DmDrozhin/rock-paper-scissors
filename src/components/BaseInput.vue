@@ -74,6 +74,9 @@
       background-color: var(--input-bg-light);
       border-radius: var(--radius-md);
       transition: var(--transition-base);
+      @include respond-down(sm) {
+        padding: var(--space-sm) var(--space-md);
+      }
     }
 
     &__icon {
