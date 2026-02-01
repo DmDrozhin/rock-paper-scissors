@@ -179,7 +179,7 @@
         bottom: 10%;
       }
       @include respond-down(sm) {
-        width: 13px;
+        width: 8px;
       }
     }
     &::before {
