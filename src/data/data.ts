@@ -125,12 +125,12 @@ export const FOOTER = {
   button: { title: 'Submit', area_label: 'Submit email button' },
   socials: {
     linkedin: {
-      link: '#',
+      link: 'https://www.linkedin.com/in/alexey-drozhzhyn-443885198',
       icon: 'LINKEDIN' as UiIcon,
       alt: 'Link to Rock Paper Scissors LinkedIn page'
     },
     whatsup: {
-      link: '#',
+      link: 'https://wa.me/380935226436',
       icon: 'WHATSUP' as UiIcon,
       alt: 'Link to Rock Paper Scissors WhatsUp chat'
     }
