@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>404 — Page not found</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <style>
+      :root {
+        --color-primary: #fec40e;
+        --color-secondary: #120f0f;
+        --color-bg-body: #1e1e1e;
+        --color-text-light: #ffffff;
+        --color-text-muted: #aaaaaa;
+
+        --space-sm: 8px;
+        --space-md: 16px;
+        --space-lg: 24px;
+        --space-xl: 32px;
+        --space-xxl: 48px;
+
+        --transition-base: 0.3s ease;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background-color: var(--color-bg-body);
+        font-family: 'Orbit', system-ui, sans-serif;
+        color: var(--color-text-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .page-404 {
+        padding: var(--space-xxl) var(--space-lg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-xxl);
+      }
+
+      .page-404__title {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 700;
+        font-size: 90px;
+        line-height: 1;
+        letter-spacing: 0.05em;
+        margin: 0;
+      }
+
+      .page-404__description {
+        max-width: 600px;
+        font-family: 'Jost', sans-serif;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 32px;
+        letter-spacing: 0.05em;
+        color: var(--color-text-muted);
+      }
+
+      .trigger-box {
+        position: relative;
+        width: 320px;
+        min-height: 320px;
+        display: grid;
+        place-content: center;
+      }
+
+      .trigger-box::before {
+        content: '';
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: radial-gradient(50% 50% at 50% 50%, #fec40e 39%, rgba(254, 196, 14, 0) 100%);
+        filter: blur(120px);
+        z-index: 0;
+      }
+
+      .home-button {
+        position: relative;
+        z-index: 1;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background-color: var(--color-secondary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: var(--space-md);
+        transition: var(--transition-base);
+      }
+
+      .home-button:hover {
+        box-shadow:
+          0px 0px 64px #fec40e,
+          0px 0px 32px #fec40e,
+          0px 0px 16px #fec40e,
+          0px 0px 8px #fec40e;
+      }
+
+      .home-button span {
+        font-family: 'Orbitron', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 32px;
+        letter-spacing: 0.05em;
+        color: var(--color-text-light);
+        -webkit-text-stroke: 1px rgba(254, 196, 14, 0.29);
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      @media (max-width: 600px) {
+        .page-404__title {
+          font-size: 48px;
+        }
+
+        .page-404__description {
+          font-size: 22px;
+          line-height: 28px;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page-404">
+      <h1 class="page-404__title">404</h1>
+
+      <p class="page-404__description">
+        Page not found.
+        <br />
+        Looks like you took a wrong turn.
+      </p>
+
+      <div class="trigger-box">
+        <a href="/" class="home-button" aria-label="Go home">
+          <span>GO HOME</span>
+        </a>
+      </div>
+    </main>
+  </body>
+</html>
