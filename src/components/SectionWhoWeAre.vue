@@ -56,7 +56,7 @@
 
 <style lang="scss" scoped>
   .section-who-we-are {
-    outline: 1px dotted rgba(241, 163, 193, 0.505);
+    // outline: 1px dotted rgba(241, 163, 193, 0.505);
     position: relative;
     padding: var(--space-xxl) var(--space-lg);
     display: flex;

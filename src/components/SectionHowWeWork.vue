@@ -25,7 +25,7 @@
   .section-how-we-work {
     padding: var(--space-xxl) var(--space-lg);
     text-align: center;
-    outline: 1px dotted rgba(204, 108, 236, 0.443);
+    // outline: 1px dotted rgba(204, 108, 236, 0.443);
     @include respond-down(sm) {
       padding: var(--space-xxl) var(--space-md);
     }

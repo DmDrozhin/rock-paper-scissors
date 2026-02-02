@@ -107,7 +107,7 @@
 
 <style lang="scss" scoped>
   .app-footer {
-    outline: 1px dotted rgba(142, 140, 240, 0.482);
+    // outline: 1px dotted rgba(142, 140, 240, 0.482);
     padding: var(--space-xxl) var(--space-lg);
     @include respond-down(sm) {
       padding: var(--space-xxl) var(--space-md);

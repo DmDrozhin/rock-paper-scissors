@@ -23,7 +23,7 @@
 
 <style lang="scss" scoped>
   .section-rps {
-    outline: 1px dashed rgba(115, 239, 239, 0.345);
+    // outline: 1px dashed rgba(115, 239, 239, 0.345);
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
     flex-direction: column;
