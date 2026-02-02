@@ -56,7 +56,6 @@
 
 <style lang="scss" scoped>
   .section-who-we-are {
-    // outline: 1px dotted rgba(241, 163, 193, 0.505);
     position: relative;
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
@@ -92,7 +91,6 @@
     .card {
       width: 100%;
       max-width: 325px;
-      // outline: 1px dotted rgba(200, 200, 200, 0.491);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;

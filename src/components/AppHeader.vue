@@ -19,7 +19,6 @@
 
 <style lang="scss" scoped>
   .app-header {
-    // outline: 1px solid rgba(204, 225, 171, 0.484);
     width: 100%;
     min-height: 50px;
     padding: var(--space-lg) var(--space-lg);

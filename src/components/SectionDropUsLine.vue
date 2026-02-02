@@ -23,7 +23,6 @@
 
 <style lang="scss" scoped>
   .section-drop-us-line {
-    // outline: 1px dotted rgba(241, 104, 12, 0.479);
     text-align: center;
     padding: var(--space-xxl) var(--space-lg);
     @include respond-down(sm) {
