@@ -94,7 +94,8 @@
             <img
               class="social-link__icon whatsup"
               :src="getUiIcon(FOOTER.socials.whatsup.icon)"
-              :alt="FOOTER.socials.whatsup.alt" />
+              :alt="FOOTER.socials.whatsup.alt"
+              width="100" />
           </a>
         </div>
       </div>

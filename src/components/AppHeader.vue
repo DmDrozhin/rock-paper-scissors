@@ -9,7 +9,7 @@
 <template>
   <header class="app-header" id="top">
     <div class="app-header__container">
-      <img v-if="logo" class="app-header__logo" :src="logo" :alt="`${META.name} Logo`" />
+      <img v-if="logo" class="app-header__logo" :src="logo" :alt="`${META.name} Logo`" width="70" />
       <Button
         :options="{ title: HEADER.button, area_label: HEADER.area_label }"
         @click="modal.reveal({ source: 'app header' })" />

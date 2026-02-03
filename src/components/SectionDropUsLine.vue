@@ -16,7 +16,7 @@
       :options="{ title: DROP_US_A_LINE.button.title, class: 'wide', area_label: DROP_US_A_LINE.button.area_label }"
       @click="modal.reveal({ source: 'drop-us-line' })" />
     <div class="section-drop-us-line__image-container">
-      <img class="section-drop-us-line__image" v-if="image" :src="image" :alt="DROP_US_A_LINE.title" />
+      <img class="section-drop-us-line__image" v-if="image" :src="image" :alt="DROP_US_A_LINE.title" width="100%" />
     </div>
   </div>
 </template>
