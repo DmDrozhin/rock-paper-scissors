@@ -9,12 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="canonical" href="https://therockpapperscissors.com/" />
     <title>Rock Paper Scissors — Email Marketing from Scratch</title>
+
     <link rel="preload" href="/fonts/Orbitron-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Orbitron-SemiBold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Orbitron-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <script
-      src="https://www.google.com/recaptcha/api.js?render=6LciOVwsAAAAAK8oiD2GYM5EGxYxuY0gMgK7U3PH"
-      async
-      defer></script>
+    <link rel="preload" href="/fonts/Orbitron-Medium.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/Jost-Latin.woff2" as="font" type="font/woff2" crossorigin />
+
     <meta
       name="description"
       content="We build functional email marketing channels from scratch. Clear tasks. Working solutions." />
@@ -22,15 +23,43 @@
     <meta
       property="og:description"
       content="We build functional email marketing channels from scratch. Clear tasks. Working solutions." />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JVXJRDNZNV"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag('js', new Date());
 
-      gtag('config', 'G-JVXJRDNZNV');
+    <script>
+      (function () {
+        let scriptsLoaded = false;
+        const gaId = 'G-JVXJRDNZNV';
+        const captchaKey = '6LciOVwsAAAAAK8oiD2GYM5EGxYxuY0gMgK7U3PH';
+        function loadScripts() {
+          if (scriptsLoaded) return;
+          scriptsLoaded = true;
+          // 1. Loading Google Analytics
+          const gaScript = document.createElement('script');
+          gaScript.async = true;
+          gaScript.src = 'https://www.googletagmanager.com/gtag/js?id=' + gaId;
+          document.head.appendChild(gaScript);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          window.gtag = gtag; // Make gtag globally available
+          gtag('js', new Date());
+          gtag('config', gaId);
+          // 2. Loading reCAPTCHA
+          const captchaScript = document.createElement('script');
+          captchaScript.async = true;
+          captchaScript.defer = true;
+          captchaScript.src = 'https://www.google.com/recaptcha/api.js?render=' + captchaKey;
+          document.head.appendChild(captchaScript);
+          // Deregister event listeners after loading
+          events.forEach((event) => window.removeEventListener(event, loadScripts));
+        }
+        // Load scripts on user interaction
+        const events = ['mouseover', 'keydown', 'touchstart', 'wheel'];
+        events.forEach((event) => window.addEventListener(event, loadScripts, { passive: true }));
+        // Reserve loading after 4 seconds just in case of no interaction
+        setTimeout(loadScripts, 4000);
+      })();
     </script>
   </head>
   <body>
