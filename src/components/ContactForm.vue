@@ -120,12 +120,11 @@
       0px 0px 2px $shadow-color;
 
     @include respond-down(sm) {
-      // height: 100vh;
       padding: var(--space-lg);
       border-radius: 0;
       box-shadow: none;
       border: none;
-      min-height: 100vh;
+      min-height: 100dvh;
     }
     &::before {
       content: '';
@@ -146,9 +145,8 @@
     &:after {
       content: '';
       position: absolute;
-      $shift: var(--space-md);
-      right: $shift;
-      bottom: $shift;
+      right: var(--space-md);
+      bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
       $size: 70px;
       width: $size;
       height: $size;
