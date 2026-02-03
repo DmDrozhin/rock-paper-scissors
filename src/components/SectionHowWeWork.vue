@@ -81,11 +81,12 @@
         width: $size;
         height: $size;
         border-radius: 50%;
-        background-color: var(--color-bg-dark);
         display: grid;
         place-content: center;
         overflow: hidden;
         padding: var(--space-sm);
+        background-color: var(--color-bg-app);
+        overflow: hidden;
         &::before {
           content: '';
           position: absolute;
@@ -93,9 +94,8 @@
           height: calc($size);
           border-radius: 50%;
           background-color: var(--color-primary);
-          z-index: 0;
-          overflow: hidden;
           opacity: 0.12;
+          z-index: 0;
         }
       }
     }

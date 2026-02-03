@@ -113,7 +113,7 @@
       padding: var(--space-xxl) var(--space-md);
     }
     &__wrapper {
-      max-width: 1100px;
+      max-width: 1160px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;

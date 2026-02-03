@@ -20,7 +20,7 @@
 <style lang="scss" scoped>
   .app-header {
     width: 100%;
-    min-height: 50px;
+    min-height: 70px;
     padding: var(--space-lg) var(--space-lg);
     @include respond-down(sm) {
       padding: var(--space-lg) var(--space-md);

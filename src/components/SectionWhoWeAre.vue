@@ -63,7 +63,9 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-xxl);
-    overflow: hidden;
+    @media screen and (max-width: 1440px) {
+      overflow: hidden;
+    }
     @include respond-down(sm) {
       padding: var(--space-xxl) var(--space-md);
     }
@@ -110,10 +112,6 @@
         line-height: 28px;
         letter-spacing: 0.05em;
         margin-bottom: var(--space-xs);
-        @include respond-down(lg) {
-          // font-size: 18px;
-          // line-height: 24px;
-        }
         &:last-child {
           margin-bottom: 0;
         }
@@ -130,6 +128,8 @@
         display: grid;
         place-content: center;
         border: 1px dotted #1d1f23;
+        background-color: var(--color-bg-app);
+        overflow: hidden;
         &::before {
           content: '';
           position: absolute;
@@ -137,9 +137,11 @@
           height: calc($size);
           border-radius: 50%;
           background-color: var(--color-primary);
-          z-index: 0;
-          overflow: hidden;
           opacity: 0.12;
+          z-index: 0;
+        }
+        &::after {
+          content: '';
         }
       }
     }

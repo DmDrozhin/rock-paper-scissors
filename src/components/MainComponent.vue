@@ -10,7 +10,7 @@
 <template>
   <div class="main-component">
     <Header role="banner" />
-    <main role="main">
+    <main class="main-component__container" role="main">
       <SectionRPS />
       <SectionWhoWeAre />
       <SectionHowWeWork />
@@ -23,8 +23,18 @@
 <style lang="scss" scoped>
   .main-component {
     width: 100%;
-    background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
-    background-size: contain, contain;
+    min-width: 320px;
+    min-height: 100vh;
     background-color: var(--color-bg-app);
+    background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
+    // background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
+    // background-size: contain, contain;
+    background-size: 30%, 30%;
+    background-repeat: repeat, repeat;
+    background-position: center center;
+    &__container {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
   }
 </style>

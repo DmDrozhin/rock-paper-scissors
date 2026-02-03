@@ -17,11 +17,19 @@
         <img v-if="icon" :src="icon" alt="Rock Paper Scissors Icon" />
         <span>{{ RPS.button.title }}</span>
       </button>
+      <!-- <div class="hexagon-clip"></div> -->
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
+  .hexagon-clip {
+    width: 100%;
+    width: 320px;
+    height: 350px; /* Adjust height for a more symmetric look */
+    background-color: #3498db; /* Example color */
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  }
   .section-rps {
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
@@ -44,6 +52,8 @@
     min-height: 350px;
     display: grid;
     place-content: center;
+    background-color: var(--color-bg-app);
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
     z-index: 1;
     &::before {
       content: '';
