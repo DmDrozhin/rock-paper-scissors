@@ -183,6 +183,12 @@
       color: var(--color-danger);
       text-align: center;
     }
+    @media (max-height: 500px) and (orientation: landscape) {
+      padding: var(--space-md); // Reduce padding for very short screens in landscape mode
+      .header__title {
+        margin-top: var(--space-md); // Reduce top margin for the title
+      }
+    }
   }
   .header {
     &__title {
