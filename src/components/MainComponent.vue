@@ -27,9 +27,10 @@
     min-height: 100vh;
     background-color: var(--color-bg-app);
     background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
-    // background-image: url('@/assets/images/grid-vertical.svg'), url('@/assets/images/grid-horizontal.svg');
-    // background-size: contain, contain;
     background-size: 30%, 30%;
+    @include respond-down(sm) {
+      background-size: 100%, 100%;
+    }
     background-repeat: repeat, repeat;
     background-position: center center;
     &__container {
