@@ -41,13 +41,19 @@
       }
     }
   );
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 </script>
 
 <template>
   <footer class="app-footer">
     <div class="app-footer__wrapper">
       <div class="app-footer__logo logo-block">
-        <a class="logo-block__link" v-if="logo" href="#top" aria-label="home link">
+        <a class="logo-block__link" v-if="logo" href="#" aria-label="home link" @click.prevent="scrollToTop">
           <img class="logo-block__image" :src="logo" alt="web site logo" width="100" />
         </a>
         <div class="logo-block__text" v-html="FOOTER.description"></div>
