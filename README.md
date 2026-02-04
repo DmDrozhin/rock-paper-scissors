@@ -2,6 +2,7 @@
 
 A modern **SPA landing page for a marketing services startup**, built with **Vue 3**. The project focuses on clear service presentation, lead generation, and secure form submission **without a custom backend**.
 
+🌐 **Demo:** [https://therockpapperscissors.com/](https://therockpapperscissors.com/)
 ---
 
 ## ✨ Key Features
