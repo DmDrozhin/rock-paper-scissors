@@ -1,48 +1,124 @@
-# .
+# Startup Marketing Landing 🚀
 
-This template should help get you started developing with Vue 3 in Vite.
+A modern **SPA landing page for a marketing services startup**, built with **Vue 3**. The project focuses on clear service presentation, lead generation, and secure form submission **without a custom backend**.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## ✨ Key Features
 
-## Recommended Browser Setup
+* ⚡ **Single Page Application** built with Vue 3 (no Vue Router)
+* 🧠 Global state management via **Pinia**
+* 📝 **Two lead collection forms**:
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+  * quick email form in the footer
+  * detailed form inside a modal window
+* ✅ Client-side **form validation** before submission
+* 📬 Form submission to email via **Formspree**
+* 🛡️ Multi-layer **bot protection**:
 
-## Type Support for `.vue` Imports in TS
+  * honeypot field
+  * submission time interval check
+  * Google reCAPTCHA
+* 🎨 **100% vector graphics (SVG only)**
+* 🧩 Reusable Base UI components
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+---
 
-## Customize configuration
+## 🛠️ Tech Stack
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+* **Vue 3** (Composition API)
+* **Vite**
+* **TypeScript**
+* **Pinia**
+* **SCSS**
+* **Formspree**
 
-## Project Setup
+---
 
-```sh
-npm install
+## 📂 Project Structure
+
+```txt
+src/
+├── assets/        # SVG graphics and styles
+├── components/    # UI and Base components
+├── composables/   # form logic and validation
+├── stores/        # Pinia stores
+├── utils/         # helpers and utilities
+├── data/          # static landing content
+└── App.vue        # SPA entry point
 ```
 
-### Compile and Hot-Reload for Development
+---
 
-```sh
-npm run dev
-```
+## 🧩 Forms & Submission Flow
 
-### Type-Check, Compile and Minify for Production
+### Footer Form
 
-```sh
-npm run build
-```
+* minimal email-only form for fast lead capture
+* email format validation
+* honeypot + timing protection
 
-### Lint with [ESLint](https://eslint.org/)
+### Modal Form
 
-```sh
-npm run lint
-```
+* extended form with multiple fields
+* full client-side validation
+* Google reCAPTCHA before submission
+
+### Data Delivery
+
+* form data is sent via **Formspree**
+* no custom backend required
+* messages are delivered directly to email
+
+---
+
+## 🛡️ Bot Protection Strategy
+
+The project uses a layered approach to prevent spam while keeping UX smooth:
+
+* hidden honeypot field
+* minimum form fill time validation
+* Google reCAPTCHA
+
+This combination effectively blocks automated submissions without adding friction for real users.
+
+---
+
+## 🤔 Why No Backend?
+
+This project intentionally avoids a custom backend to:
+
+* reduce infrastructure and maintenance costs
+* simplify deployment and hosting
+* minimize security risks related to server-side code
+* keep the architecture lightweight and easy to scale
+
+Using **Formspree** allows secure and reliable email delivery while maintaining a fully static, frontend-only application — an ideal solution for landing pages and early-stage startups.
+
+---
+
+## 🎯 Project Purpose
+
+* marketing startup landing page
+* lead generation and contact collection
+* demonstration of a production-ready SPA without a traditional backend
+
+---
+
+## 👤 Author
+
+**Dmitriy Drozhin**
+Front-end Developer (Vue.js)
+
+* GitHub: *add link*
+* LinkedIn: *add link*
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+⭐ If you find this project useful or interesting — feel free to give it a star
