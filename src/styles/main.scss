@@ -58,13 +58,6 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--color-bg-body);
-}
-#app {
-  min-height: 100vh;
-  max-width: 1440px;
-  min-width: 320px;
-  margin: 0 auto;
 }
 * {
   box-sizing: border-box;

@@ -9,7 +9,7 @@
 <template>
   <header class="app-header" id="top">
     <div class="app-header__container">
-      <img v-if="logo" class="app-header__logo" :src="logo" :alt="`${META.name} Logo`" />
+      <img v-if="logo" class="app-header__logo" :src="logo" :alt="`${META.name} Logo`" width="70" />
       <Button
         :options="{ title: HEADER.button, area_label: HEADER.area_label }"
         @click="modal.reveal({ source: 'app header' })" />
@@ -19,9 +19,8 @@
 
 <style lang="scss" scoped>
   .app-header {
-    // outline: 1px solid rgba(204, 225, 171, 0.484);
     width: 100%;
-    min-height: 50px;
+    min-height: 70px;
     padding: var(--space-lg) var(--space-lg);
     @include respond-down(sm) {
       padding: var(--space-lg) var(--space-md);

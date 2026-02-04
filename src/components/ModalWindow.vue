@@ -18,13 +18,18 @@
 
   const { isRevealed, cancel } = modal;
 
-  useScrollLock(document.body);
+  const isLocked = useScrollLock(document.body);
+
+  watch(
+    isRevealed,
+    (open) => {
+      isLocked.value = open;
+    },
+    { immediate: true }
+  );
 
   onKeyStroke('Escape', () => {
     if (isRevealed.value) cancel();
-  });
-  watch(isRevealed, (open) => {
-    document.body.style.overflow = open ? 'hidden' : '';
   });
 </script>
 
@@ -53,8 +58,6 @@
     inset: 0;
     z-index: 1000;
     display: flex;
-    align-items: center;
-    justify-content: center;
     background-color: rgba(0, 0, 0, 0.6);
     padding: var(--space-lg);
 
@@ -69,12 +72,14 @@
     position: relative;
 
     width: 100%;
+    margin: auto;
 
     &.w-630 {
       max-width: 630px;
     }
     @include respond-down(sm) {
-      min-height: 100vh;
+      margin: 0 auto;
+      min-height: 100dvh;
     }
 
     &__close-button {

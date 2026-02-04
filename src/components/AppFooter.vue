@@ -41,13 +41,19 @@
       }
     }
   );
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 </script>
 
 <template>
   <footer class="app-footer">
     <div class="app-footer__wrapper">
       <div class="app-footer__logo logo-block">
-        <a class="logo-block__link" v-if="logo" href="#top" aria-label="home link">
+        <a class="logo-block__link" v-if="logo" href="#" aria-label="home link" @click.prevent="scrollToTop">
           <img class="logo-block__image" :src="logo" alt="web site logo" width="100" />
         </a>
         <div class="logo-block__text" v-html="FOOTER.description"></div>
@@ -94,7 +100,8 @@
             <img
               class="social-link__icon whatsup"
               :src="getUiIcon(FOOTER.socials.whatsup.icon)"
-              :alt="FOOTER.socials.whatsup.alt" />
+              :alt="FOOTER.socials.whatsup.alt"
+              width="100" />
           </a>
         </div>
       </div>
@@ -107,13 +114,12 @@
 
 <style lang="scss" scoped>
   .app-footer {
-    // outline: 1px dotted rgba(142, 140, 240, 0.482);
     padding: var(--space-xxl) var(--space-lg);
     @include respond-down(sm) {
       padding: var(--space-xxl) var(--space-md);
     }
     &__wrapper {
-      max-width: 1100px;
+      max-width: 1160px;
       margin: 0 auto;
       display: flex;
       justify-content: space-between;

@@ -16,14 +16,13 @@
       :options="{ title: DROP_US_A_LINE.button.title, class: 'wide', area_label: DROP_US_A_LINE.button.area_label }"
       @click="modal.reveal({ source: 'drop-us-line' })" />
     <div class="section-drop-us-line__image-container">
-      <img class="section-drop-us-line__image" v-if="image" :src="image" :alt="DROP_US_A_LINE.title" />
+      <img class="section-drop-us-line__image" v-if="image" :src="image" :alt="DROP_US_A_LINE.title" width="100%" />
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .section-drop-us-line {
-    // outline: 1px dotted rgba(241, 104, 12, 0.479);
     text-align: center;
     padding: var(--space-xxl) var(--space-lg);
     @include respond-down(sm) {

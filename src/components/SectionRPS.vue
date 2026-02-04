@@ -8,22 +8,23 @@
   <div class="section-rps">
     <h1 class="section-rps__title">{{ RPS.title }}</h1>
     <div class="section-rps__description description" v-html="RPS.description"></div>
-    <div class="trigger-box">
-      <button
-        v-ripple
-        class="trigger-box__button"
-        :aria-label="RPS.button.aria_label"
-        @click="modal.reveal({ source: 'rock paper scissors' })">
-        <img v-if="icon" :src="icon" alt="Rock Paper Scissors Icon" />
-        <span>{{ RPS.button.title }}</span>
-      </button>
+    <div class="trigger-box__wrapper">
+      <div class="trigger-box">
+        <button
+          v-ripple
+          class="trigger-box__button"
+          :aria-label="RPS.button.aria_label"
+          @click="modal.reveal({ source: 'rock paper scissors' })">
+          <img v-if="icon" :src="icon" alt="Rock Paper Scissors Icon" />
+          <span>{{ RPS.button.title }}</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style lang="scss" scoped>
   .section-rps {
-    // outline: 1px dashed rgba(115, 239, 239, 0.345);
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
     flex-direction: column;
@@ -44,8 +45,27 @@
     max-width: 320px;
     min-height: 350px;
     display: grid;
-    place-content: center;
+    place-items: center;
     z-index: 1;
+    &__wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      min-height: 350px;
+      z-index: 1;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 5px;
+        right: 5px;
+        bottom: 6px;
+        background-color: #ccc;
+        background-color: var(--color-bg-app);
+        clip-path: polygon(50% 0%, 100% 22.5%, 100% 73%, 50% 100%, 0% 73%, 0% 22.5%);
+        z-index: -1;
+      }
+    }
     &::before {
       content: '';
       position: absolute;
@@ -72,7 +92,6 @@
     }
 
     &__button {
-      // display: none !important;
       $size: 200px;
       width: $size;
       height: $size;
@@ -111,5 +130,3 @@
     }
   }
 </style>
-
-<style lang="scss"></style>

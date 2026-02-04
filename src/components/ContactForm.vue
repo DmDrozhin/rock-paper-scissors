@@ -120,12 +120,11 @@
       0px 0px 2px $shadow-color;
 
     @include respond-down(sm) {
-      // height: 100vh;
       padding: var(--space-lg);
       border-radius: 0;
       box-shadow: none;
       border: none;
-      min-height: 100vh;
+      min-height: 100dvh;
     }
     &::before {
       content: '';
@@ -146,9 +145,8 @@
     &:after {
       content: '';
       position: absolute;
-      $shift: var(--space-md);
-      right: $shift;
-      bottom: $shift;
+      right: var(--space-md);
+      bottom: calc(var(--space-md) + env(safe-area-inset-bottom));
       $size: 70px;
       width: $size;
       height: $size;
@@ -182,6 +180,12 @@
       font-size: 14px;
       color: var(--color-danger);
       text-align: center;
+    }
+    @media (max-height: 500px) and (orientation: landscape) {
+      padding: var(--space-md); // Reduce padding for very short screens in landscape mode
+      .header__title {
+        margin-top: var(--space-md); // Reduce top margin for the title
+      }
     }
   }
   .header {

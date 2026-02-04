@@ -31,5 +31,8 @@ export default defineConfig(({ mode }) => ({
     cssCodeSplit: false, // ❗ Single CSS file
     // https://vite.dev/config/build-options/#build-minify
     minify: 'esbuild'
+  },
+  esbuild: {
+    legalComments: 'none'
   }
 }));

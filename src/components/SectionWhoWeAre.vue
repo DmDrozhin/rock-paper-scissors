@@ -56,7 +56,6 @@
 
 <style lang="scss" scoped>
   .section-who-we-are {
-    // outline: 1px dotted rgba(241, 163, 193, 0.505);
     position: relative;
     padding: var(--space-xxl) var(--space-lg);
     display: flex;
@@ -64,7 +63,9 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-xxl);
-    overflow: hidden;
+    @media screen and (max-width: 1440px) {
+      overflow: hidden;
+    }
     @include respond-down(sm) {
       padding: var(--space-xxl) var(--space-md);
     }
@@ -79,9 +80,6 @@
       display: flex;
       justify-content: center;
       gap: var(--space-xl);
-      @include respond-down(xl) {
-        // gap: var(--space-md);
-      }
       @include respond-down(lg) {
         flex-wrap: wrap;
       }
@@ -92,7 +90,6 @@
     .card {
       width: 100%;
       max-width: 325px;
-      // outline: 1px dotted rgba(200, 200, 200, 0.491);
       border-radius: var(--radius-lg);
       display: flex;
       flex-direction: column;
@@ -112,10 +109,6 @@
         line-height: 28px;
         letter-spacing: 0.05em;
         margin-bottom: var(--space-xs);
-        @include respond-down(lg) {
-          // font-size: 18px;
-          // line-height: 24px;
-        }
         &:last-child {
           margin-bottom: 0;
         }
@@ -131,7 +124,8 @@
         border-radius: 50%;
         display: grid;
         place-content: center;
-        border: 1px dotted #1d1f23;
+          background-color: var(--color-bg-app);
+        overflow: hidden;
         &::before {
           content: '';
           position: absolute;
@@ -139,9 +133,11 @@
           height: calc($size);
           border-radius: 50%;
           background-color: var(--color-primary);
-          z-index: 0;
-          overflow: hidden;
           opacity: 0.12;
+          z-index: 0;
+        }
+        &::after {
+          content: '';
         }
       }
     }
