@@ -80,9 +80,6 @@
       display: flex;
       justify-content: center;
       gap: var(--space-xl);
-      @include respond-down(xl) {
-        // gap: var(--space-md);
-      }
       @include respond-down(lg) {
         flex-wrap: wrap;
       }
@@ -127,8 +124,7 @@
         border-radius: 50%;
         display: grid;
         place-content: center;
-        border: 1px dotted #1d1f23;
-        background-color: var(--color-bg-app);
+          background-color: var(--color-bg-app);
         overflow: hidden;
         &::before {
           content: '';
