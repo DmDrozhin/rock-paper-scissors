@@ -43,3 +43,7 @@ temp/
 
 .env
 .env.*.local
+
+backup
+.gitignore
+gitignore
