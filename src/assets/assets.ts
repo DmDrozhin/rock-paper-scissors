@@ -18,7 +18,8 @@ export const UI_ICONS = {
   // --- --- ---
   FORM_USER: 'form_account.svg',
   FORM_EMAIL: 'email.svg',
-  FORM_MESSAGE: 'form_message.svg'
+  FORM_MESSAGE: 'form_message.svg',
+  FORM_COMPANY: 'form_company.svg'
 } as const;
 
 export type UiIcon = keyof typeof UI_ICONS;

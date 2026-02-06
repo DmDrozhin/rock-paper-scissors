@@ -161,6 +161,15 @@ export const CONTACT_FORM = {
       icon_size: 26,
       type: 'email'
     },
+    // honeypot field to catch bots, should be hidden in UI and have tabindex="-1"
+    company: {
+      name: 'company',
+      placeholder: 'Your company (optional)',
+      required: false,
+      icon: 'FORM_COMPANY' as UiIcon,
+      icon_size: 24,
+      type: 'text'
+    },
     message: {
       name: 'message',
       placeholder: 'Your message',

@@ -54,6 +54,7 @@
         <div class="header__description" v-html="CONTACT_FORM.description"></div>
       </div>
       <BaseInput
+        class="contact-form__input name"
         v-model="form.name"
         label=""
         :placeholder="CONTACT_FORM.fields.name.placeholder"
@@ -64,6 +65,7 @@
         :error="nameError"
         @blur="touched.name = true" />
       <BaseInput
+        class="contact-form__input email"
         v-model="form.email"
         label=""
         :placeholder="CONTACT_FORM.fields.email.placeholder"
@@ -73,7 +75,19 @@
         :icon_size="CONTACT_FORM.fields.email.icon_size"
         :error="emailError"
         @blur="touched.email = true" />
+      <BaseInput
+        class="contact-form__input company"
+        v-model="form.company"
+        autocomplete="off"
+        tabindex="-1"
+        label=""
+        :placeholder="CONTACT_FORM.fields.company.placeholder"
+        :name="CONTACT_FORM.fields.company.name"
+        :type="CONTACT_FORM.fields.company.type"
+        :icon="getUiIcon(CONTACT_FORM.fields.company.icon)"
+        :icon_size="CONTACT_FORM.fields.company.icon_size" />
       <BaseTextArea
+        class="contact-form__input message"
         v-model="form.message"
         :placeholder="CONTACT_FORM.fields.message.placeholder"
         :icon="getUiIcon(CONTACT_FORM.fields.message.icon)"
@@ -180,6 +194,13 @@
       font-size: 14px;
       color: var(--color-danger);
       text-align: center;
+    }
+    &__input.company {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
     }
     @media (max-height: 500px) and (orientation: landscape) {
       padding: var(--space-md); // Reduce padding for very short screens in landscape mode

@@ -95,14 +95,14 @@ export function useContactForm(onSuccess?: (form: FormState) => void) {
     state.error = '';
     state.success = false;
 
-    // honeypot → имитируем успех
+    // 🕳️ honeypot → 100% bot → imitate success
     if (form.company) {
       state.success = true;
       resetForm();
       return;
     }
 
-    // анти-бот (3 сек)
+    // ⏱️ Defense against bots that submit the form immediately after it appears
     if (Date.now() - state.mountedAt < 3000) {
       state.error = 'Too fast 🤖';
       return;
