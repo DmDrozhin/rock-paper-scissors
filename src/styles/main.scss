@@ -3,7 +3,7 @@
 @use './ripple.scss' as *;
 /* Root variables */
 :root {
-  scrollbar-gutter: stable both-edges;
+  scrollbar-gutter: stable;
   --font-header: 'Orbitron', sans-serif;
   --font-body: 'Jost', sans-serif;
   --font-main: 'Orbit', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
@@ -58,6 +58,7 @@ body {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--color-bg-app);
 }
 * {
   box-sizing: border-box;
